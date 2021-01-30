@@ -6,7 +6,7 @@
 
 @section('content')
 @if (app('request')->input('mode') ==0)
-<h1>댓글작성</h1> //index에서 보낸 mode의 파라미터에 따라 타이틀이 바뀐다.
+<h1>댓글작성</h1>{{-- index에서 보낸 mode의 파라미터에 따라 타이틀이 바뀐다. --}}
 @else
 <h1>글 작성</h1>
 @endif
