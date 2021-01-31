@@ -7,10 +7,10 @@ Appoint Calendar
 
 @section('style')
 <style>
-    font.holy {
+    font.red {
         font-family: tahoma;
         font-size: 20px;
-        color: #FF6C21;
+        color: red;
     }
 
     font.blue {
@@ -31,30 +31,38 @@ Appoint Calendar
     <table class="table table-bordered table-responsive">
         <tr align="center">
             <td>
+                @if ($prevyear > 2020)
                 <a href="/appoint?year={{$prevyear}}&month={{$month}}&day=1">◀◀</a>
+                @else
+                ◀◀
+                @endif
             </td>
             <td>
+                @if ($prev_year > 2020)
                 <a href="/appoint?year={{$prev_year}}&month={{$prev_month}}&day=1">◀</a>
+                @else
+                ◀
+                @endif
             </td>
             <td height=" 50" bgcolor="#FFFFFF" colspan="3">
-                <a href=<?php echo 'index.php?year=' . $thisyear . '&month=' . $thismonth . '&day=1'; ?>>
-                    <?php echo "&nbsp;&nbsp;" . $year . '년 ' . $month . '월 ' . "&nbsp;&nbsp;"; ?></a>
+                <a href="/appoint?year={{$thisyear}}&month={{$thismonth}}&day=1">
+                    &nbsp;&nbsp;{{$year}}年 {{$month}}月&nbsp;&nbsp;</a>
             </td>
             <td>
-                <a href=<?php echo 'index.php?year='.$next_year.'&month='.$next_month.'&day=1'; ?>>▶</a>
+                <a href="/appoint?year={{$next_year}}&month={{$next_month}}&day=1">▶</a>
             </td>
             <td>
-                <a href=<?php echo 'index.php?year='.$nextyear.'&month='.$month.'&day=1'; ?>>▶▶</a>
+                <a href="/appoint?year={{$nextyear}}&month={{$month}}&day=1">▶▶</a>
             </td>
         </tr>
         <tr class="info">
-            <th hight="30">일</td>
-            <th>월</th>
-            <th>화</th>
-            <th>수</th>
-            <th>목</th>
-            <th>금</th>
-            <th>토</th>
+            <th hight="30">日</td>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
         </tr>
 
         <?php
@@ -70,10 +78,9 @@ Appoint Calendar
                 // 8. 첫번째 주이고 시작요일보다 $j가 작거나 마지막주이고 $j가 마지막 요일보다 크면 표시하지 않음
                 echo '<td height="50" valign="top">';
                 if (!(($i == 1 && $j < $start_week) || ($i == $total_week && $j > $last_week))) {
-        
-                    if ($j == 0) {
+                    if ($j == 0 || $j == 3 && $day > 14 && $day < 23) {
                         // 9. $j가 0이면 일요일이므로 빨간색
-                        $style = "holy";
+                        $style = "red";
                     } else if ($j == 6) {
                         // 10. $j가 0이면 토요일이므로 파란색
                         $style = "blue";
@@ -83,14 +90,31 @@ Appoint Calendar
                     }
         
                     // 12. 오늘 날짜면 굵은 글씨
-                    if ($year == $thisyear && $month == $thismonth && $day == date("j")) {
+                    if ($year == $thisyear && $month == $thismonth && $day == date("j") && $style != "red") {
                         // 13. 날짜 출력
                         echo '<font class='.$style.'>';
-                        echo $day;
+                        echo '<a style = "color:'.$style.'" href="/appoint/create?year='.$year.'&month='.$month.'&day='.$day.'">'.$day.'<div style="font-size: 9pt">予約可能</div></a>';
                         echo '</font>';
                     } else {
                         echo '<font class='.$style.'>';
-                        echo $day;
+                        if($year == $thisyear){
+                            if($month==$thismonth && $day >= $today && $style != "red" 
+                            || $month==$thismonth+1 && $day <= $today && $style != "red"){
+                                echo '<a style = "color:'.$style.'" href="/appoint/create?year='.$year.'&month='.$month.'&day='.$day.'">'.$day.'<div style="font-size: 9pt">予約可能</div></a>';
+                            } else {
+                                echo $day;
+                                if($style == "red"){
+                                    echo '<div style="font-size: 9pt">休日</div>';
+                                }
+                            }
+                        } else if($year == ($thisyear+1) && $thismonth == 12 && $month == 1 && $day <= $today && $style != "red"){
+                            echo '<a style = "color:'.$style.'" href="/appoint/create?year='.$year.'&month='.$month.'&day='.$day.'">'.$day.'<div style="font-size: 9pt">予約可能</div></a>';
+                        } else {
+                            echo $day;
+                            if($style == "red"){
+                                    echo '<div style="font-size: 9pt">休日</div>';
+                                }
+                        }
                         echo '</font>';
                     }
                     // 14. 날짜 증가
