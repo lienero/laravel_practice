@@ -97,9 +97,17 @@ class AppointController extends Controller
 
     public function designer() //디자니어페이지 메소드
     {
+        // $year, $month 값이 없으면 현재 날짜
+        $year = $_GET['year'];
+        $month = $_GET['month'];
+        $day = $_GET['day'];
+
         $disigners = Shift::get();
         return view('appoint.designer', [
-            'disigners'=>$disigners
+            'disigners'=>$disigners,
+            'year'=>$year,
+            'month'=>$month,
+            'day'=>$day
         ]);
     }
 
