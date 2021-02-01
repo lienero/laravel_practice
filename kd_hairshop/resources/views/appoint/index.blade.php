@@ -93,14 +93,14 @@ Appoint Calendar
                     if ($year == $thisyear && $month == $thismonth && $day == date("j") && $style != "red") {
                         // 13. 날짜 출력
                         echo '<font class='.$style.'>';
-                        echo '<a style = "color:'.$style.'" href="/appoint/create?year='.$year.'&month='.$month.'&day='.$day.'">'.$day.'<div style="font-size: 9pt">予約可能</div></a>';
+                        echo '<a style = "color:'.$style.'" href="/appoint/designer?year='.$year.'&month='.$month.'&day='.$day.'">'.$day.'<div style="font-size: 9pt">予約可能</div></a>';
                         echo '</font>';
                     } else {
                         echo '<font class='.$style.'>';
                         if($year == $thisyear){
                             if($month==$thismonth && $day >= $today && $style != "red" 
                             || $month==$thismonth+1 && $day <= $today && $style != "red"){
-                                echo '<a style = "color:'.$style.'" href="/appoint/create?year='.$year.'&month='.$month.'&day='.$day.'">'.$day.'<div style="font-size: 9pt">予約可能</div></a>';
+                                echo '<a style = "color:'.$style.'" href="/appoint/designer?year='.$year.'&month='.$month.'&day='.$day.'">'.$day.'<div style="font-size: 9pt">予約可能</div></a>';
                             } else {
                                 echo $day;
                                 if($style == "red"){
@@ -108,7 +108,7 @@ Appoint Calendar
                                 }
                             }
                         } else if($year == ($thisyear+1) && $thismonth == 12 && $month == 1 && $day <= $today && $style != "red"){
-                            echo '<a style = "color:'.$style.'" href="/appoint/create?year='.$year.'&month='.$month.'&day='.$day.'">'.$day.'<div style="font-size: 9pt">予約可能</div></a>';
+                            echo '<a style = "color:'.$style.'" href="/appoint/designer?year='.$year.'&month='.$month.'&day='.$day.'">'.$day.'<div style="font-size: 9pt">予約可能</div></a>';
                         } else {
                             echo $day;
                             if($style == "red"){
