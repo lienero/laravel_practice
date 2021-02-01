@@ -4,14 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index');
 
-Route::get('/appo', function () {
-    return view('appo');
-});
-
-Route::get('/appcheck', function () {
-    return view('apppcheck');
-});
-
 Route::get('/introduction', function () {
     return view('introduction');
 });
@@ -42,5 +34,7 @@ use App\Http\Controllers\AppointController;
 Route::get('/appoint', [AppointController::class,'index']); 
 
 Route::get('/appoint/create',  [AppointController::class,'create']); 
+
+Route::get('/appoint/designer',  [AppointController::class,'designer']); 
 
 Route::post('/appoint',  [AppointController::class,'store']); 

@@ -95,19 +95,24 @@ class AppointController extends Controller
         return view('appoint.create');
     }
 
-    public function designer() //디자니어페이지 메소드
+    public function designer(Request $request) //디자니어페이지 메소드
     {
         // $year, $month 값이 없으면 현재 날짜
         $year = $_GET['year'];
         $month = $_GET['month'];
         $day = $_GET['day'];
+        if($day < 10) {
+            $day = '0'.$day;
+        }
+        $date = $year.'-0'.$month.'-'.$day;
 
-        $disigners = Shift::get();
+        $disigners = Shift::where('date', $date)->get();
         return view('appoint.designer', [
             'disigners'=>$disigners,
             'year'=>$year,
             'month'=>$month,
-            'day'=>$day
+            'day'=>$day,
+            'date'=>$date
         ]);
     }
 
