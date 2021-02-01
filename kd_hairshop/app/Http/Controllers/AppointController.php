@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 // use App\Task를 하면 모델인 Task 클래스를 상속받는다.
 use App\Appoint; // 테이블명 지정
+use App\Shift; // 테이블명 지정
 
 class AppointController extends Controller
 {
@@ -46,8 +47,8 @@ class AppointController extends Controller
         $nextyear = $year + 1;
 
 
-        // comments 를 선언하고 변수 안에 쿼리빌더의 결과를 넣는다.
-        // 테이블은 Task 테이블이고 grp와 sort를 정렬한다.
+        // appoints 를 선언하고 변수 안에 쿼리빌더의 결과를 넣는다.
+        // 테이블은 Appoint 테이블
         $appoints = Appoint::get();
 
         // mktime 함수는 연도, 월, 일, 시, 분, 초를 받아서 타임스탬프값을 만들어 리턴하는 역활을 합니다.
@@ -92,6 +93,14 @@ class AppointController extends Controller
     public function create() //생성페이지 메소드
     {
         return view('appoint.create');
+    }
+
+    public function designer() //디자니어페이지 메소드
+    {
+        $disigners = Shift::get();
+        return view('appoint.designer', [
+            'disigners'=>$disigners
+        ]);
     }
 
     public function store() //저장 메소드

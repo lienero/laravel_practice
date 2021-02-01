@@ -1,8 +1,10 @@
 @charset "UTF-8";
+
 /*!
  * Font Awesome Free 5.15.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
+
 .fa,
 .fas,
 .far,
@@ -82,6 +84,7 @@
   margin-left: 2.5em;
   padding-left: 0;
 }
+
 .fa-ul > li {
   position: relative;
 }
@@ -115,6 +118,7 @@
 .fab.fa-pull-left {
   margin-right: 0.3em;
 }
+
 .fa.fa-pull-right,
 .fas.fa-pull-right,
 .far.fa-pull-right,
@@ -137,6 +141,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -146,10 +151,12 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
+
 .fa-rotate-90 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
   transform: rotate(90deg);
@@ -220,6 +227,7 @@
 
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
 readers do not read off random characters that represent icons */
+
 .fa-500px:before {
   content: "";
 }
@@ -6080,14 +6088,21 @@ readers do not read off random characters that represent icons */
  * Font Awesome Free 5.15.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
+
 @font-face {
   font-family: "Font Awesome 5 Free";
+
   font-style: normal;
+
   font-weight: 900;
+
   font-display: block;
+
   src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?6606667d9800a27eb8b5f61ccb66d510);
+
   src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?6606667d9800a27eb8b5f61ccb66d510) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2?3eb06c702e27fb110194f5a16c45cb8e) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff?f4f93856730733912b1e06ad64c0baf7) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf?915a0b79c22a1c1f64da9e0a90a12f02) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.svg?0454203f26b33fc02e2b686b317aab3d) format("svg");
 }
+
 .fa,
 .fas {
   font-family: "Font Awesome 5 Free";
