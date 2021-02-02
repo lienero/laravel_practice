@@ -12,8 +12,8 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/Member registration', function () {
-    return view('Member registration');
+Route::get('/Member_registration', function () {
+    return view('Member_registration');
 });
 
 Route::get('/mypage', function () {
