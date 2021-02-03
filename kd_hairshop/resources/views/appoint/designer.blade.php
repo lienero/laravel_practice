@@ -1,9 +1,194 @@
 @extends('layouts.main')
-@extends('layouts.sliderbox')
 @extends('layouts.footer')
 @section('content')
 <br>
-<div>디자이너 선택</div>
+<style>
+    .bannerFondo{
+            height: 400px;
+    }
+    </style>
+    <div class="">      
+        <div class="bannerFondo bg-gray-600 bg-left-top bg-auto bg-repeat-x" style="background-image: url(./img/continuartl_4.png)">
+        </div>
+    
+          <div class="-mt-64 ">
+            <div class="w-full text-center">
+              <p class="text-xl font-bold tracking-widest text-white">KD-hair</p>
+              <h1 class="font-bold text-5xl text-white">
+                    職員選び
+              </h1>
+          </div>
+                  
+          <div class="container mx-auto grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div class="p-2 sm:p-10 text-center cursor-pointer mx-auto">
+                  <div class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500 bg-white hover:bg-gray-400">
+                      <div class="space-y-10">
+                          <img src="/img/cut1.jpg" alt="">
+                          <div class="px-6 py-4">
+                              <div class="space-y-5">
+                                  <div class="font-bold text-xl mb-2 text-gray-800">이름</div>
+                                  <p class="text-gray-700 text-base">
+                                      경력 내용
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      
+              <div class="p-2 sm:p-10 text-center cursor-pointer text-white mx-auto"> 
+                  <div class="py-16 max-w-sm rounded overflow-hidden shadow-lg bg-gray-800 hover:bg-gray-500 transition duration-500">
+                      <div class="space-y-10">
+                        <img src="/img/cut1.jpg" alt="">
+                          <div class="px-6 py-4">
+                              <div class="space-y-5">
+                                  <div class="font-bold text-xl mb-2">이름</div>
+                                  <p class="text-base">
+                                      경력 내용
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      
+              <div class="p-2 sm:p-10 text-center cursor-pointer translate-x-2 mx-auto">
+                  <div class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500 bg-white hover:bg-gray-400">
+                      <div class="space-y-10">
+                        <img src="/img/cut1.jpg" alt="">
+                          <div class="px-6 py-4">
+                              <div class="space-y-5">
+                                  <div class="font-bold text-xl mb-2 text-gray-800">이름</div>
+                                  <p class="text-gray-700 text-base">
+                                      경력내용
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      
+          </div>
+          <div class="container mx-auto grid grid-cols-1 gap-4 sm:grid-cols-3 ">
+      
+            <div class="p-2 sm:p-10 text-center cursor-pointer mx-auto">
+                <div class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white hover:bg-gray-400">
+                    <div class="space-y-10">
+                        <img src="/img/cut1.jpg" alt="">
+                        <div class="px-6 py-4">
+                            <div class="space-y-5">
+                                <div class="font-bold text-xl mb-2 text-gray-800">이름</div>
+                                <p class="text-gray-700 text-base">
+                                    경력내용
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="p-2 sm:p-10 text-center cursor-pointer text-white mx-auto"> 
+                <div class="py-16 max-w-sm rounded overflow-hidden shadow-lg bg-gray-800 hover:bg-gray-500 transition duration-500">
+                    <div class="space-y-10">
+                      <img src="/img/cut1.jpg" alt="">
+                        <div class="px-6 py-4">
+                            <div class="space-y-5">
+                                <div class="font-bold text-xl mb-2">이름</div>
+                                <p class="text-base">
+                                    경력내용
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="p-2 sm:p-10 text-center cursor-pointer translate-x-2 mx-auto">
+                <div class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500 bg-white hover:bg-gray-400">
+                    <div class="space-y-10">
+                      <img src="/img/cut1.jpg" alt="">
+                        <div class="px-6 py-4">
+                            <div class="space-y-5">
+                                <div class="font-bold text-xl mb-2 text-gray-800">이름</div>
+                                <p class="text-gray-700 text-base">
+                                    경력내용
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    
+        </div>
+          </div>
+      
+      </div>
+    </div> 
+    <div class="">      
+        <div class="bannerFondo bg-gray-600 bg-left-top bg-auto bg-repeat-x" style="background-image: url(./img/continuartl_4.png)">
+        </div>
+    
+          <div class="-mt-64 ">
+            <div class="w-full text-center">
+              <p class="text-xl font-bold tracking-widest text-white">KD-hair</p>
+              <h1 class="font-bold text-5xl text-white">
+                    時間選び
+              </h1>
+          </div>
+        </div>
+        <div class="container mx-auto">
+            <table class="w-full border-2">
+                <tbody class="divide-y bg-gray-700">
+                    <p class="pl-4 text-2xl font-bold">午前</p>
+                    <tr class="">
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">9:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                    </tr>
+                    <tr class="">
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                    </tr>
+                    <tr class="">
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                    </tr>
+                </tbody> 
+            </table>       
+        </div>
+        <br>
+        <div class="container mx-auto">
+            <table class="w-full border">
+                <tbody class="divide-y bg-gray-700">
+                    <p class="pl-4 text-2xl font-bold">午後</p>
+                    <tr class="">
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                    </tr>
+                    <tr class="">
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                    </tr>
+                    <tr class="">
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                    </tr>
+                    <tr class="">
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                        <td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="#">09:00</a></td>
+                    </tr>
+                </tbody> 
+            </table>       
+        </div>
+    </div>    
+
 @foreach($disigners as $disigner)
 <div>
     <br>
@@ -23,9 +208,7 @@ for($i=1; $i<7; $i++) {
 }
 ?>
 @endforeach
-<br>
-<div>시간선택</div>
-<br>
+
 <?php
 $j = 0;
 $page_count = 0;
