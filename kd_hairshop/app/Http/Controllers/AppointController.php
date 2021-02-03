@@ -92,7 +92,23 @@ class AppointController extends Controller
     }
     public function create() //생성페이지 메소드
     {
-        return view('appoint.create');
+        $date = isset($_GET['date']) ? $_GET['year'] : NULL;
+        $disigner = isset($_GET['disigner']) ? $_GET['disigner'] : NULL;
+        $time = isset($_GET['time']) ? $_GET['disigner'] : NULL;
+
+        $appoint_time = array("10:00", "10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30"
+        ,"17:00","17:30","18:00","18:30","19:00","19:30");
+
+        $disigners = Shift::where('date', $date)->get();
+        $appoints = Appoint::where('appoint_st','like', $date.'%')->orderBy('appoint_st','asc')->get();
+        return view('appoint.create', [
+            'disigners'=>$disigners,
+            'appoints'=>$appoints,
+            'date'=>$date,
+            'disigner'=>$disigner,
+            'time'=>$time,
+            'appoint_time'=>$appoint_time
+        ]);
     }
 
     public function designer(Request $request) //디자니어페이지 메소드
@@ -121,8 +137,9 @@ class AppointController extends Controller
         ]);
     }
 
-    public function store() //저장 메소드
+    public function store(Request $request) //저장 메소드
     {
+        $appoints = Appoint::get();
         return redirect("/appoint");
     }
 }
