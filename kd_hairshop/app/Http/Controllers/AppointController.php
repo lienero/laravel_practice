@@ -124,11 +124,14 @@ class AppointController extends Controller
         $appoint_time = array("10:00", "10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30"
         ,"17:00","17:30","18:00","18:30","19:00","19:30");
 
+        $disigner_info = array('staff_1'=>'불속성', 'staff_2'=>'풀속성', 'staff_3'=>'물속성', 'staff_4'=>'빛속성' ,'staff_5'=>'전기속성', 'staff_6'=>'바위속성');
+
         $disigners = Shift::where('date', $date)->get();
         $appoints = Appoint::where('appoint_st','like', $date.'%')->orderBy('appoint_st','asc')->get();
         return view('appoint.designer', [
             'disigners'=>$disigners,
             'appoints'=>$appoints,
+            'disigner_info'=>$disigner_info,
             'year'=>$year,
             'month'=>$month,
             'day'=>$day,
