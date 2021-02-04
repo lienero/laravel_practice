@@ -101,7 +101,7 @@ class AppointController extends Controller
 
         $designers = Shift::where('date', $date)->get();
         $appoints = Appoint::where('appoint_st','like', $date.'%')->orderBy('appoint_st','asc')->get();
-        $ds_appoints = Appoint::where(where([['appoint_st','like', $date.'%'],['designer','like',$designer],]))->orderBy('appoint_st','asc')->get();
+        $ds_appoints = Appoint::where([['appoint_st','like', $date.'%'],['designer','like',$designer],])->orderBy('appoint_st','asc')->get();
         return view('appoint.create', [
             'designers'=>$designers,
             'appoints'=>$appoints,
