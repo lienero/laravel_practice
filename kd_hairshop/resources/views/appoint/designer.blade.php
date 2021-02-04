@@ -18,7 +18,7 @@
                     職員選び
               </h1>
           </div>
-          @foreach($disigners as $disigner)
+          @foreach($designers as $designer)
         <div>
             <br>
         </div>
@@ -28,7 +28,7 @@
             // 데이터베이스의 스태프의 이름을 변수로 지정한다.      
             $staff = 'staff_'.$i; 
             // 다자이너 테이블의 staff변수(staff_?) 가 null 이 아니면 출력
-            if($disigner->$staff != NULL) {
+            if($designer->$staff != NULL) {
                 // 링크에 겟 형식으로 변수를 보내준다.
                 if(($staff_count % 3) == 0 && $staff_count >= 3) {
                     echo '</div>';
@@ -44,7 +44,7 @@
                                     <div class="space-y-5">
                                         <div class="font-bold text-xl mb-2 text-gray-800"><a href="/appoint/create?date='.$date.'&designer='.$staff.'">'.$staff.'</a></div>
                                         <p class="text-gray-700 text-base">
-                                            '.$disigner_info[$staff].'
+                                            '.$designer_info[$staff].'
                                         </p>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                     <div class="space-y-5">
                                         <div class="font-bold text-xl mb-2 text-gray-800"><a href="/appoint/create?date='.$date.'&designer='.$staff.'">'.$staff.'</a></div>
                                         <p class="text-gray-700 text-base">
-                                            '.$disigner_info[$staff].'
+                                            '.$designer_info[$staff].'
                                         </p>
                                     </div>
                                 </div>

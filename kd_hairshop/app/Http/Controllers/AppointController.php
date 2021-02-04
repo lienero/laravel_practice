@@ -93,19 +93,19 @@ class AppointController extends Controller
     public function create() //생성페이지 메소드
     {
         $date = isset($_GET['date']) ? $_GET['date'] : NULL;
-        $disigner = isset($_GET['disigner']) ? $_GET['disigner'] : NULL;
+        $designer = isset($_GET['designer']) ? $_GET['designer'] : NULL;
         $time = isset($_GET['time']) ? $_GET['time'] : NULL;
 
         $appoint_time = array("10:00", "10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30"
         ,"17:00","17:30","18:00","18:30","19:00","19:30");
 
-        $disigners = Shift::where('date', $date)->get();
+        $designers = Shift::where('date', $date)->get();
         $appoints = Appoint::where('appoint_st','like', $date.'%')->orderBy('appoint_st','asc')->get();
         return view('appoint.create', [
-            'disigners'=>$disigners,
+            'designers'=>$designers,
             'appoints'=>$appoints,
             'date'=>$date,
-            'disigner'=>$disigner,
+            'designer'=>$designer,
             'time'=>$time,
             'appoint_time'=>$appoint_time
         ]);
@@ -124,14 +124,14 @@ class AppointController extends Controller
         $appoint_time = array("10:00", "10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30"
         ,"17:00","17:30","18:00","18:30","19:00","19:30");
 
-        $disigner_info = array('staff_1'=>'불속성', 'staff_2'=>'풀속성', 'staff_3'=>'물속성', 'staff_4'=>'빛속성' ,'staff_5'=>'전기속성', 'staff_6'=>'바위속성');
+        $designer_info = array('staff_1'=>'불속성', 'staff_2'=>'풀속성', 'staff_3'=>'물속성', 'staff_4'=>'빛속성' ,'staff_5'=>'전기속성', 'staff_6'=>'바위속성');
 
-        $disigners = Shift::where('date', $date)->get();
+        $designers = Shift::where('date', $date)->get();
         $appoints = Appoint::where('appoint_st','like', $date.'%')->orderBy('appoint_st','asc')->get();
         return view('appoint.designer', [
-            'disigners'=>$disigners,
+            'designers'=>$designers,
             'appoints'=>$appoints,
-            'disigner_info'=>$disigner_info,
+            'designer_info'=>$designer_info,
             'year'=>$year,
             'month'=>$month,
             'day'=>$day,
@@ -143,6 +143,31 @@ class AppointController extends Controller
     public function store(Request $request) //저장 메소드
     {
         $appoints = Appoint::get();
+        $date = $request->input('date'); // 날짜
+        $time =  $request->input('time'); // 시간
+        $designer = $request->input('designer'); // 디자이너
+        $mem_id = $request->input('mem_id');
+        $mem_email = $request->input('email');
+        $hair_style = $request->input('hair_style');
+        $appoint_st = $date." ".$time; 
+        // strtotime('시간변수', '-30 minutes') : 기존의 시각에 30분을 뺌
+        $appoint_end = strtotime($appoint_st.'+1 hours');
+        // date("Y-m-d h:i:s", $strto_appoint_end[$l]); : 변수를 date Y-m-d h:i:s 형식으로 변경
+        $appoint_end = date("Y-m-d h:i:s", $appoint_end);
+
+        $Appoint = new Appoint;
+        $Appoint->mem_id = $mem_id;
+        $Appoint->mem_email  = $creatorName;
+        $Appoint->designer = $designer; 
+        $Appoint->hair_style = $hair_style; 
+        $Appoint->appoint_st = $appoint_st;
+        $Appoint->$appoint_end = $appoint_end;
+        $Appoint->save();
+
+        if($Appoint){
+            echo "<script>alert('予約を成功しました');</script>";
+        }
+
         return redirect("/appoint");
     }
 }
