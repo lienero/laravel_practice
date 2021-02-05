@@ -11,4 +11,5 @@ use Illuminate\Database\Eloquent\Model;
 class Appoint extends Model
 {
     protected $table = 'appoint';
+    public $timestamps = false;
 }

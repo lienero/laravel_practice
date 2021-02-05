@@ -24,6 +24,19 @@ Route::get('/price', function () {
     return view('price');
 });
 
+Route::get('/manager', function () {
+    return view('manager.index');
+});
+
+
+Route::get('/manager/appo_management', function () {
+    return view('manager.appo_management');
+});
+
+Route::get('/manager/shift_management', function () {
+    return view('manager.shift_management');
+});
+
 
 // routes/web.php 에 정의된 라우트는 브라우저를 통해서 유입되는 라우트 URL을 정의하는데 사용
 // Route::메소드('URL경로', '컨트롤러의 클래스명@메소드명'); 을 지정

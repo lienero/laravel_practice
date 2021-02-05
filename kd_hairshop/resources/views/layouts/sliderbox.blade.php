@@ -23,7 +23,7 @@
 <!--appointment box-->
 <div class="container mx-auto">
   <div class="grid grid-cols-3">
-  <a href="/appoint" class=""><div class="bg-gray-800 text-center text-2xl hover:bg-gray-200 hover:text-black font-bold">予約</div></a>
+   <a href="/appoint" class=""><div class="bg-gray-800 text-center text-2xl hover:bg-gray-200 hover:text-black font-bold">予約</div></a>
     <a href="/mypage"><div class="bg-gray-700 text-center text-2xl font-bold hover:bg-gray-200 hover:text-black font-bold">予約管理</div></a>
     <a href="/price"><div class="bg-gray-800 text-center text-2xl font-bold hover:bg-gray-200 hover:text-black font-bold">値段</div></a>
   </div>
