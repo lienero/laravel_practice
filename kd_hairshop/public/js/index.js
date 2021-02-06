@@ -72,6 +72,27 @@ function sliderButton1(){
     
     
     });
+    mobiscroll.settings = {
+        lang: 'en',            
+        theme: 'ios',          
+        themeVariant: 'light' 
+    };
+
+    mobiscroll.select('#demo-mobile', {
+        display: 'bubble'      
+    });
+
+    mobiscroll.select('#demo-desktop', {
+        display: 'bubble',     
+        touchUi: false         
+    });
 });
 
+//check-all//
+
+$( document ).ready( function() {
+    $( '.check-all' ).click( function() {
+      $( '.ab' ).prop( 'checked', this.checked );
+    } );
+  } );
   

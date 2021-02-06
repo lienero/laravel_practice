@@ -2,38 +2,45 @@
 @section('content')
 
 <form action="/appoint" method="POST">
-@csrf
-<div class="w-full bg-cover bg-center" style="height:32rem; background-image:url(/img/hair1.jpg)">
-    <div class="flex items-center justify-center h-full w-full bg-gray-900 bg-opacity-50">
-        <div class="text-center">
-            <h1 class="text-white text-2xl font-semibold uppercase md:text-3xl">KD-hairshop <span class="underline text-white">非会員予約</span></h1>
+    {{-- @csrf : CSRF(크로스-사이트 요청 위조 공격)으로부터 보호 --}}
+    @csrf
+    <div class="w-full bg-cover bg-center" style="height:32rem; background-image:url(/img/hair1.jpg)">
+        <div class="flex items-center justify-center h-full w-full bg-gray-900 bg-opacity-50">
+            <div class="text-center">
+                <h1 class="text-white text-2xl font-semibold uppercase md:text-3xl">KD-hairshop <span
+                        class="underline text-white">非会員予約</span></h1>
+            </div>
         </div>
     </div>
-</div>
-<br>
-<div class="container mx-auto">
-            <div class="appearance-none label-floating">
-                <input type="hidden" id = "date" name = "date" value="{{$date}}">
-                <input class="mx-auto tracking-wide py-2 px-4 mb-3 leading-relaxed appearance-none block  w-sp bg-gray-200 border border-gray-200 rounded-lg focus:outline-none focus:bg-white focus:border-gray-500 focus:text-black"
+    <br>
+    <div class="container mx-auto">
+        <div class="appearance-none label-floating">
+            <input type="hidden" id="date" name="date" value="{{$date}}">
+            <input
+                class="mx-auto tracking-wide py-2 px-4 mb-3 leading-relaxed appearance-none block  w-sp bg-gray-200 border border-gray-200 rounded-lg focus:outline-none focus:bg-white focus:border-gray-500 focus:text-black"
                 id="name" name="mem_id" type="text" placeholder="予約者名" required style="color :black; font-weight:bold;">
-                <label for="name" class="absolute tracking-wide py-2 px-4 mb-4 opacity-0 leading-tight block top-0 left-0 cursor-text text-black" >
-                </label>
-            </div>
-            <div class="appearance-none label-floating">
-                <input class="mx-auto tracking-wide py-2 px-4 mb-3 leading-relaxed appearance-none block w-sp bg-gray-200 border border-gray-200 rounded-lg focus:outline-none focus:bg-white focus:border-gray-500 focus:text-black"
-                id="name" name="email" type="text" placeholder="メールアドレス" required style="color :black; font-weight:bold;">
-                <label for="name" class="absolute tracking-wide py-2 px-4 mb-4 opacity-0 leading-tight block top-0 left-0 cursor-text">
-                </label>
-            </div>
-</div>
-<div class="container mx-auto">
+            <label for="name"
+                class="absolute tracking-wide py-2 px-4 mb-4 opacity-0 leading-tight block top-0 left-0 cursor-text text-black">
+            </label>
+        </div>
+        <div class="appearance-none label-floating">
+            <input
+                class="mx-auto tracking-wide py-2 px-4 mb-3 leading-relaxed appearance-none block w-sp bg-gray-200 border border-gray-200 rounded-lg focus:outline-none focus:bg-white focus:border-gray-500 focus:text-black"
+                id="name" name="email" type="text" placeholder="メールアドレス" required
+                style="color :black; font-weight:bold;">
+            <label for="name"
+                class="absolute tracking-wide py-2 px-4 mb-4 opacity-0 leading-tight block top-0 left-0 cursor-text">
+            </label>
+        </div>
+    </div>
+    <div class="container mx-auto">
         <div class="" mbsc-form style="">
             <div class="mbsc-grid mbsc-form-grid">
-                    <div class="mx-auto mbsc-col-sm-12 mbsc-col-md-6">
+                <div class="mx-auto mbsc-col-sm-12 mbsc-col-md-6">
                     @if($designer == 'x')
                     <label>
-                            職員選び
-                            <select mbsc-dropdown id="demo-desktop" data-input-style="box" name="designer">
+                        職員選び
+                        <select mbsc-dropdown id="demo-desktop" data-input-style="box" name="designer">
                             <?php
                             foreach ($designers as $designer) {
                                 for($j = 1; $j < 7; $j++ ){
@@ -46,24 +53,30 @@
                                             }
                                         }
                                         if($count == 0){
-                                            echo '<option value="'.$staff.'">'.$staff.$designer[0].'</option>';
+                                            echo '<option value="'.$staff.'">'.$staff.'</option>';
                                         }
                                     }
                                 }     
                             }    
                             ?>
-                            </select>
-                        </label>
-                        <label>
-                            職員選び
-                            <select mbsc-dropdown id="demo-desktop" data-input-style="box" name="designer">
-                                <option id = "time" name = "time" value="{{$time}}">{{$datetime}}</option>
-                            </select>
-                        </label>
+                        </select>
+                    </label>
+                    <label>
+                        時間選び
+                        <select mbsc-dropdown id="demo-desktop" data-input-style="box" name="time">
+                            <option value="{{$time}}">{{$datetime}}</option>
+                        </select>
+                    </label>
                     @else
-                        <label>
-                            時間選び
-                            <select mbsc-dropdown id="demo-mobile" data-input-style="box" name="time">
+                    <label>
+                        職員選び
+                        <select mbsc-dropdown id="demo-desktop" data-input-style="box" name="designer">
+                            <option value="{{$designer}}">{{$designer}}</option>
+                        </select>
+                    </label>
+                    <label>
+                        時間選び
+                        <select mbsc-dropdown id="demo-desktop" data-input-style="box" name="time">
                             <?php
                             $j = 0;
                             $page_count = 0;
@@ -90,12 +103,14 @@
                                     list($end_date, $end_time) = explode(" ", $strto_appoint_end[$l]);
                                     // 예약된 시작 시간과 배열에 등록된 시간이 같으면 카운트 추가
                                     // 데이터베이스와 형식을 맞추기 위해 ':00' 를 합친다.
-                                    if($st_time == $appoint_time[$k].':00'){
-                                        $st_count++;
-                                    }
-                                    // 예약된 시작 시간이나 끝나는 시간이 같으면 배열에 등록된 시간이 같으면 카운트 추가
-                                    if($end_time == $appoint_time[$k].':00' || $st_time == $appoint_time[$k].':00'){
-                                        $end_count++;
+                                    if($st_date == $date) {
+                                        if($st_time == $appoint_time[$k].':00'){
+                                            $st_count++;
+                                        }
+                                        // 예약된 시작 시간이나 끝나는 시간이 같으면 배열에 등록된 시간이 같으면 카운트 추가
+                                        if($end_time == $appoint_time[$k].':00' || $st_time == $appoint_time[$k].':00'){
+                                            $end_count++;
+                                        }
                                     }
                                 }
                                 if($j != 0){
@@ -106,10 +121,12 @@
                                         // 카운트가 0이거나 디자이너 시간과 관련된 변수의 카운트가 스태프의 수보다 작으면 작동 
                                         if($ds_count == 0 && $st_count == 0 && $end_count == 0) {
                                             // 시작시간보다 배열의 시간이 작거나 끝나는 시간보다 클 경우에 작동
-                                            if($appoint_time[$k].':00' < $st_time || $appoint_time[$k].':00' >= $end_time){
-                                                echo '<option value="'.$appoint_time[$k].':00">'.$appoint_time[$k].'</option>';
-                                                // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
-                                                $ds_count=1;
+                                            if($st_date == $date) {
+                                                if($appoint_time[$k].':00' < $st_time || $appoint_time[$k].':00' >= $end_time){
+                                                    echo '<option value="'.$appoint_time[$k].':00">'.$appoint_time[$k].'</option>';
+                                                    // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
+                                                    $ds_count=1;
+                                                }
                                             }
                                         }
                                     }
@@ -124,24 +141,25 @@
                                 }
                             }
                             ?>
-                            </select>
-                        </label>
-                        @endif 
-                        <label>
-                            ヘアスタイル選び
-                            <select mbsc-dropdown id="demo-desktop" data-input-style="box" name="hair_style">
-                                <option value="Cut">カット: 5,000 円（30 分）</option>
-                                <option value="Perm">パーマ：6,000 円（1 時間）</option>
-                                <option value="Color">カラー：4,000 円 (1 時間）</option>
-                            </select>
-                        </label>      
-                    </div>
+                        </select>
+                    </label>
+                    @endif
+                    <label>
+                        ヘアスタイル選び
+                        <select mbsc-dropdown id="demo-desktop" data-input-style="box" name="hair_style">
+                            <option value="Cut">カット: 5,000 円（30 分）</option>
+                            <option value="Perm">パーマ：6,000 円（1 時間）</option>
+                            <option value="Color">カラー：4,000 円 (1 時間）</option>
+                        </select>
+                    </label>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="flex justify-center">
-    <input type="submit" value="予約" class="bg-gray-900 rounded-lg font-bold text-lg text-white text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-gray-200 hover:text-gray-900 mr-6"/>
-</div>
+    </div>
+    <div class="flex justify-center">
+        <input type="submit" value="予約"
+            class="bg-gray-900 rounded-lg font-bold text-lg text-white text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-gray-200 hover:text-gray-900 mr-6" />
+    </div>
 </form>
 @endsection

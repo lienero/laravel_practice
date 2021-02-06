@@ -28,11 +28,6 @@ Route::get('/manager', function () {
     return view('manager.index');
 });
 
-
-Route::get('/manager/appo_management', function () {
-    return view('manager.appo_management');
-});
-
 Route::get('/manager/shift_management', function () {
     return view('manager.shift_management');
 });
@@ -51,3 +46,9 @@ Route::get('/appoint/create',  [AppointController::class,'create']);
 Route::get('/appoint/designer',  [AppointController::class,'designer']); 
 
 Route::post('/appoint',  [AppointController::class,'store']); 
+
+Route::get('/manager/appo_calender', [AppointController::class,'appo_calender']); 
+
+Route::get('/manager/appo_management', [AppointController::class,'appo_management']); 
+
+Route::post('/manager/appo_management',  [AppointController::class,'appo_delete']); 

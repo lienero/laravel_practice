@@ -121,7 +121,7 @@
                                 // strtotime('시간변수', '-30 minutes') : 기존의 시각에 30분을 뺌
                                 $strto_appoint_end[$l] = strtotime($appoint_end[$l].'-30 minutes');
                                 // date("Y-m-d h:i:s", $strto_appoint_end[$l]); : 변수를 date Y-m-d h:i:s 형식으로 변경
-                                $strto_appoint_end[$l] = date("Y-m-d h:i:s", $strto_appoint_end[$l]);
+                                $strto_appoint_end[$l] = date("Y-m-d H:i:s", $strto_appoint_end[$l]);
                                 list($end_date, $end_time) = explode(" ", $strto_appoint_end[$l]);
                                 // 예약된 시작 시간과 배열에 등록된 시간이 같으면 카운트 추가
                                 // 데이터베이스와 형식을 맞추기 위해 ':00' 를 합친다.

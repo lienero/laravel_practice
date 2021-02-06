@@ -1,0 +1,17 @@
+font.red {
+    font-family: tahoma;
+    font-size: 20px;
+    color: red;
+}
+
+font.blue {
+    font-family: tahoma;
+    font-size: 20px;
+    color: #0000ff;
+}
+
+font.black {
+    font-family: tahoma;
+    font-size: 20px;
+    color: #000000;
+}
