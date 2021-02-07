@@ -114,7 +114,7 @@ class AppointController extends Controller
             $ap_designer[$idx] = $appoint->designer;
             $idx++;
         }
-        $ds_appoints = Appoint::where('designer','like',$designer)->orderBy('appoint_st','asc')->get();
+        $ds_appoints = Appoint::where([['designer','like',$designer],['appoint_st','like', $date.'%'],])->orderBy('appoint_st','asc')->get();
         return view('appoint.create', [
             'designers'=>$designers,
             'appoints'=>$appoints,
@@ -134,10 +134,18 @@ class AppointController extends Controller
         $year = $_GET['year'];
         $month = $_GET['month'];
         $day = $_GET['day'];
-        if($day < 10) {
-            $day = '0'.$day;
+        if($month < 10){
+            $dt_month = '0'.$month;
+        }else{
+            $dt_month = $month;
         }
-        $date = $year.'-0'.$month.'-'.$day;
+        if($day < 10) {
+            $dt_day = '0'.$day;
+        }else{
+            $dt_day = $day;
+        }
+        $date = $year.'-0'.$dt_month.'-'.$dt_day;
+        $staff_count = 0;
         $appoint_time = array("10:00", "10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30"
         ,"17:00","17:30","18:00","18:30","19:00","19:30");
 
@@ -154,6 +162,7 @@ class AppointController extends Controller
             'month'=>$month,
             'day'=>$day,
             'date'=>$date,
+            'staff_count'=>$staff_count,
             'appoint_time'=>$appoint_time
         ]);
     }
@@ -288,9 +297,20 @@ class AppointController extends Controller
     
             $designers = Shift::where('date', $date)->get();
             $appoints = Appoint::where('appoint_st','like', $date.'%')->orderBy('appoint_st','asc')->get();
+            
+            if($request->input('all') != NULL){
+                // 삭제요청
+                Appoint::where('appoint_st','like', $date.'%')->delete();
+            } else if($request->input('checked') != NULL) {
+                $checked = $request->input('checked');
+                foreach($checked as $check){
+                    Appoint::where('No', $check)->delete();
+                }
+            } else {
+                Appoint::where('No', $request->input('delNo'))->delete();
+            }
     
             // 삭제요청
-            Appoint::where('No', $request->input('delNo'))->delete();
             Alert::error('예약취소', '예약이 취소 되었습니다.');
     
             return redirect('/manager/appo_management?date='.$date.'');

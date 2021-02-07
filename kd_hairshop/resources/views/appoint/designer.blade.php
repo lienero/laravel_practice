@@ -24,7 +24,6 @@
             <br>
         </div>
         <?php 
-        $staff_count = 0;
         for($i=1; $i<7; $i++) {
             // 데이터베이스의 스태프의 이름을 변수로 지정한다.      
             $staff = 'staff_'.$i; 
@@ -80,7 +79,15 @@
         }
         ?>
         @endforeach
-        </>
+        @if($staff_count == 0)
+        <div class="w-full text-center">
+            <br>
+            <br>
+            <h1 class="font-bold text-4xl text-white">
+                今は予約ができません
+            </h1>
+        </div>
+        @endif
     </div>
 </div>
 <div class="">
@@ -176,5 +183,14 @@
             </tbody>
         </table>
     </div>
+    @if($staff_count == 0)
+    <div class="w-full text-center">
+        <br>
+        <br>
+        <h1 class="font-bold text-4xl text-white">
+            今は予約ができません
+        </h1>
+    </div>
+    @endif
 </div>
 @endsection

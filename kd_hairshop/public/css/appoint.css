@@ -15,3 +15,27 @@ font.black {
     font-size: 20px;
     color: #000000;
 }
+
+.staff_1 {
+    background-color: #ffd5e5;
+}
+
+.staff_2 {
+    background-color: #ffffdd;
+}
+
+.staff_3 {
+    background-color: #ccf2f4;
+}
+
+.staff_4 {
+    background-color: #a0ffe6;
+}
+
+.staff_5 {
+    background-color: #81f5ff;
+}
+
+.staff_6 {
+    background-color: #1687a7;
+}

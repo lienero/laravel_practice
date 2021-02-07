@@ -99,18 +99,16 @@
                                     // strtotime('시간변수', '-30 minutes') : 기존의 시각에 30분을 뺌
                                     $strto_appoint_end[$l] = strtotime($appoint_end[$l].'-30 minutes');
                                     // date("Y-m-d h:i:s", $strto_appoint_end[$l]); : 변수를 date Y-m-d h:i:s 형식으로 변경
-                                    $strto_appoint_end[$l] = date("Y-m-d h:i:s", $strto_appoint_end[$l]);
+                                    $strto_appoint_end[$l] = date("Y-m-d H:i:s", $strto_appoint_end[$l]);
                                     list($end_date, $end_time) = explode(" ", $strto_appoint_end[$l]);
                                     // 예약된 시작 시간과 배열에 등록된 시간이 같으면 카운트 추가
                                     // 데이터베이스와 형식을 맞추기 위해 ':00' 를 합친다.
-                                    if($st_date == $date) {
-                                        if($st_time == $appoint_time[$k].':00'){
-                                            $st_count++;
-                                        }
+                                    if($st_time == $appoint_time[$k].':00'){
+                                        $st_count++;
+                                    }
                                         // 예약된 시작 시간이나 끝나는 시간이 같으면 배열에 등록된 시간이 같으면 카운트 추가
-                                        if($end_time == $appoint_time[$k].':00' || $st_time == $appoint_time[$k].':00'){
-                                            $end_count++;
-                                        }
+                                    if($end_time == $appoint_time[$k].':00' || $st_time == $appoint_time[$k].':00'){
+                                        $end_count++;
                                     }
                                 }
                                 if($j != 0){
@@ -121,12 +119,10 @@
                                         // 카운트가 0이거나 디자이너 시간과 관련된 변수의 카운트가 스태프의 수보다 작으면 작동 
                                         if($ds_count == 0 && $st_count == 0 && $end_count == 0) {
                                             // 시작시간보다 배열의 시간이 작거나 끝나는 시간보다 클 경우에 작동
-                                            if($st_date == $date) {
-                                                if($appoint_time[$k].':00' < $st_time || $appoint_time[$k].':00' >= $end_time){
-                                                    echo '<option value="'.$appoint_time[$k].':00">'.$appoint_time[$k].'</option>';
-                                                    // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
-                                                    $ds_count=1;
-                                                }
+                                            if($appoint_time[$k].':00' < $st_time || $appoint_time[$k].':00' >= $end_time){
+                                                echo '<option value="'.$appoint_time[$k].':00">'.$appoint_time[$k].'</option>';
+                                                // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
+                                                $ds_count=1;
                                             }
                                         }
                                     }

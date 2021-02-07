@@ -37,6 +37,7 @@ Route::get('/manager/shift_management', function () {
 // Route::메소드('URL경로', '컨트롤러의 클래스명@메소드명'); 을 지정
 // 경로가 맞다면 TaskController 클래스의 index 메소드가 실행
 
+// 예약 기능 컨트롤러
 use App\Http\Controllers\AppointController;
 
 Route::get('/appoint', [AppointController::class,'index']); 
@@ -52,3 +53,9 @@ Route::get('/manager/appo_calender', [AppointController::class,'appo_calender'])
 Route::get('/manager/appo_management', [AppointController::class,'appo_management']); 
 
 Route::post('/manager/appo_management',  [AppointController::class,'appo_delete']); 
+
+// 시프트 관리 기능 컨트롤러
+use App\Http\Controllers\ShiftController;
+
+Route::get('/manager/shift_calender', [ShiftController::class,'shift_calender']); 
+
