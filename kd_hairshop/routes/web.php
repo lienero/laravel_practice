@@ -16,10 +16,6 @@ Route::get('/Member_registration', function () {
     return view('Member_registration');
 });
 
-Route::get('/mypage', function () {
-    return view('mypage');
-});
-
 Route::get('/price', function () {
     return view('price');
 });
@@ -40,19 +36,27 @@ Route::get('/manager/shift_management', function () {
 // 예약 기능 컨트롤러
 use App\Http\Controllers\AppointController;
 
+// 예약기능
 Route::get('/appoint', [AppointController::class,'index']); 
 
 Route::get('/appoint/create',  [AppointController::class,'create']); 
 
 Route::get('/appoint/designer',  [AppointController::class,'designer']); 
 
-Route::post('/appoint',  [AppointController::class,'store']); 
+Route::post('/appoint',  [AppointController::class,'store']);
 
+// 관리자 예약관리기능
 Route::get('/manager/appo_calender', [AppointController::class,'appo_calender']); 
 
 Route::get('/manager/appo_management', [AppointController::class,'appo_management']); 
 
 Route::post('/manager/appo_management',  [AppointController::class,'appo_delete']); 
+
+// 유저 예약관리기능
+Route::get('/mypage', [AppointController::class,'mypage']);
+
+Route::post('/mypage',  [AppointController::class,'mypage_delete']);
+
 
 // 시프트 관리 기능 컨트롤러
 use App\Http\Controllers\ShiftController;

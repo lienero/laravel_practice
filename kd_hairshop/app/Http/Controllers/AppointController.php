@@ -286,7 +286,7 @@ class AppointController extends Controller
             return view('manager.appo_management', [
                 'designers'=>$designers,
                 'appoints'=>$appoints,
-                'date'=>$date,
+                'date'=>$date
             ]);
         }
 
@@ -314,5 +314,40 @@ class AppointController extends Controller
             Alert::error('예약취소', '예약이 취소 되었습니다.');
     
             return redirect('/manager/appo_management?date='.$date.'');
+        }
+      
+        public function mypage(Request $request) //마이페이지 메소드
+        {
+            // 임시 아이디
+            $mem_id = '이경민'; 
+
+            $appoints = Appoint::where('mem_id','like', $mem_id)->get();
+    
+            return view('mypage.index', [
+                'appoints' => $appoints
+            ]);
+        }
+
+        public function mypage_delete(Request $request) //마이페이지 메소드
+        {
+            // 임시 아이디
+            $mem_id = '이경민'; 
+            
+            if($request->input('all') != NULL){
+                // 삭제요청
+                Appoint::where('mem_id','like', $mem_id)->delete();
+            } else if($request->input('checked') != NULL) {
+                $checked = $request->input('checked');
+                foreach($checked as $check){
+                    Appoint::where('No', $check)->delete();
+                }
+            } else {
+                Appoint::where('No', $request->input('delNo'))->delete();
+            }
+    
+            // 삭제요청
+            Alert::error('예약취소', '예약이 취소 되었습니다.');
+    
+            return redirect('/mypage');
         }
 }

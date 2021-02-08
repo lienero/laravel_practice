@@ -95,7 +95,7 @@ Shift Calendar
                     if ($year == $thisyear && $month == $thismonth && $day == date("j") && $style != "red") {
                         // 13. 날짜 출력
                         echo '<font class='.$style.'>';
-                        if($$ds_staff[0] != 'test') {
+                        if($ds_staff[0] != 'test') {
                             echo '<a style = "color:'.$style.'" href="/manager/shift_management?date='.$date.'">'.$day;
                             for($k=0; $k<6; $k++){
                                 if($ds_staff[$k] == 'on'){
