@@ -14,3 +14,11 @@ input::placeholder {
 .w-sp {
     width: 37rem;
 }
+
+.bg-image {
+    background: url(/img/intro_1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    position: relative;
+}

@@ -13,6 +13,8 @@ class AppointController extends Controller
     // use Illuminate\Http\Request 클래스의 변수
     public function index(Request $request) // Request 클래스의 변수 매개변수로 사용
     {
+        date_default_timezone_set('Asia/Seoul');
+
         if (!isset($cellh)){
             $cellh = 70; // date cell height
         }
@@ -93,6 +95,8 @@ class AppointController extends Controller
     }
     public function create() //생성페이지 메소드
     {
+        date_default_timezone_set('Asia/Seoul');
+
         $date = isset($_GET['date']) ? $_GET['date'] : 'x';
         $designer = isset($_GET['designer']) ? $_GET['designer'] : 'x';
         $time = isset($_GET['time']) ? $_GET['time'] : 'x';
@@ -130,6 +134,7 @@ class AppointController extends Controller
 
     public function designer(Request $request) //디자니어페이지 메소드
     {
+        date_default_timezone_set('Asia/Seoul');
         // $year, $month 값이 없으면 현재 날짜
         $year = $_GET['year'];
         $month = $_GET['month'];
@@ -144,7 +149,7 @@ class AppointController extends Controller
         }else{
             $dt_day = $day;
         }
-        $date = $year.'-0'.$dt_month.'-'.$dt_day;
+        $date = $year.'-'.$dt_month.'-'.$dt_day;
         $staff_count = 0;
         $appoint_time = array("10:00", "10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30"
         ,"17:00","17:30","18:00","18:30","19:00","19:30");
@@ -197,12 +202,14 @@ class AppointController extends Controller
 
         Alert::success('예약완료', '예약이 완료 되었습니다.');
 
-        return redirect("/appoint");
+        return redirect("/");
     }
 
         // use Illuminate\Http\Request 클래스의 변수
         public function appo_calender(Request $request) // Request 클래스의 변수 매개변수로 사용
         {
+            date_default_timezone_set('Asia/Seoul');
+
             if (!isset($cellh)){
                 $cellh = 70; // date cell height
             }
@@ -320,11 +327,14 @@ class AppointController extends Controller
         {
             // 임시 아이디
             $mem_id = '이경민'; 
+            $date = date("Y-m-d H:i:s");
 
             $appoints = Appoint::where('mem_id','like', $mem_id)->get();
+            $dt_appoints = Appoint::where([['mem_id','like', $mem_id],['appoint_st','>=', $date],])->get();
     
             return view('mypage.index', [
-                'appoints' => $appoints
+                'appoints' => $appoints,
+                'dt_appoints' => $dt_appoints
             ]);
         }
 

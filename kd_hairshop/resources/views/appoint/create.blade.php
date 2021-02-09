@@ -120,9 +120,17 @@
                                         if($ds_count == 0 && $st_count == 0 && $end_count == 0) {
                                             // 시작시간보다 배열의 시간이 작거나 끝나는 시간보다 클 경우에 작동
                                             if($appoint_time[$k].':00' < $st_time || $appoint_time[$k].':00' >= $end_time){
-                                                echo '<option value="'.$appoint_time[$k].':00">'.$appoint_time[$k].'</option>';
-                                                // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
-                                                $ds_count=1;
+                                                if($date == date("Y-m-d")){
+                                                    if($appoint_time[$k] > date("H:i")){
+                                                        echo '<option value="'.$appoint_time[$k].':00">'.$appoint_time[$k].'</option>';
+                                                        // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
+                                                        $ds_count=1;
+                                                    }
+                                                } else {
+                                                    echo '<option value="'.$appoint_time[$k].':00">'.$appoint_time[$k].'</option>';
+                                                    // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
+                                                    $ds_count=1;
+                                                }
                                             }
                                         }
                                     }
@@ -130,9 +138,17 @@
                                     // 카운트가 0이거나 디자이너 시간과 관련된 변수의 카운트가 스태프의 수보다 작으면 작동 
                                     if($ds_count == 0 && $st_count == 0 && $end_count == 0) {
                                         // 시작시간보다 배열의 시간이 작거나 끝나는 시간보다 클 경우에 작동
-                                        echo '<option value="'.$appoint_time[$k].':00">'.$appoint_time[$k].'</option>';
-                                            // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
-                                            $ds_count=1;
+                                        if($date == date("Y-m-d")){
+                                            if($appoint_time[$k] > date("H:i")){
+                                                echo '<option value="'.$appoint_time[$k].':00">'.$appoint_time[$k].'</option>';
+                                                // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
+                                                $ds_count=1;
+                                            }
+                                        } else {
+                                                echo '<option value="'.$appoint_time[$k].':00">'.$appoint_time[$k].'</option>';
+                                                // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
+                                                $ds_count=1;
+                                        }
                                     }
                                 }
                             }

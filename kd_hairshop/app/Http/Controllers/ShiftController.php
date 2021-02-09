@@ -12,6 +12,8 @@ class ShiftController extends Controller
     // use Illuminate\Http\Request 클래스의 변수
     public function shift_calender(Request $request) // Request 클래스의 변수 매개변수로 사용
     {
+        date_default_timezone_set('Asia/Seoul');
+        
         if (!isset($cellh)){
             $cellh = 70; // date cell height
          }

@@ -63,3 +63,12 @@ use App\Http\Controllers\ShiftController;
 
 Route::get('/manager/shift_calender', [ShiftController::class,'shift_calender']); 
 
+// 로그인 기능 컨트롤러
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

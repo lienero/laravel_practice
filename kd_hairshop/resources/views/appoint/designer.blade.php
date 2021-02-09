@@ -152,10 +152,19 @@
                                     if($count == 0 && $st_count < $staff_count && $end_count < $staff_count) {
                                         // 시작시간보다 배열의 시간이 작거나 끝나는 시간보다 클 경우에 작동
                                         if($appoint_time[$k].':00' < $st_time || $appoint_time[$k].':00' >= $end_time){
-                                            echo '<td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="/appoint/create?date='.$date.'&time='.$appoint_time[$k].':00">'.$appoint_time[$k].'</a></td>';
-                                            // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
-                                            $count=1;
-                                            $page_count++;
+                                            if($date == date("Y-m-d")){
+                                                if($appoint_time[$k] > date("H:i")){
+                                                    echo '<td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="/appoint/create?date='.$date.'&time='.$appoint_time[$k].':00">'.$appoint_time[$k].'</a></td>';
+                                                    // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
+                                                    $count=1;
+                                                    $page_count++;
+                                                }
+                                            } else {
+                                                echo '<td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="/appoint/create?date='.$date.'&time='.$appoint_time[$k].':00">'.$appoint_time[$k].'</a></td>';
+                                                // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
+                                                $count=1;
+                                                $page_count++;
+                                            }
                                         }
                                     }
                                     if(($page_count%3) == 0) {
@@ -168,11 +177,21 @@
                                 }
                                 // 카운트가 0이거나 디자이너 시간과 관련된 변수의 카운트가 스태프의 수보다 작으면 작동 
                                 if($count == 0 && $st_count < $staff_count && $end_count < $staff_count) {
-                                    // 시작시간보다 배열의 시간이 작거나 끝나는 시간보다 클 경우에 작동
+                                    if($date == date("Y-m-d")){
+                                        if($appoint_time[$k] > date("H:i")){
+                                            // 시작시간보다 배열의 시간이 작거나 끝나는 시간보다 클 경우에 작동
+                                            echo '<td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="/appoint/create?date='.$date.'&time='.$appoint_time[$k].':00">'.$appoint_time[$k].'</a></td>';
+                                            // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
+                                            $count=1;
+                                            $page_count++;
+                                        }
+                                    } else {
+                                        // 시작시간보다 배열의 시간이 작거나 끝나는 시간보다 클 경우에 작동
                                         echo '<td class="px-6 py-4 text-center border-2 hover:bg-white hover:text-black font-bold hover:border-4 "><a href="/appoint/create?date='.$date.'&time='.$appoint_time[$k].':00">'.$appoint_time[$k].'</a></td>';
                                         // 출력을 할 시 반복을 끝내는 위해 count를 0에서 벗어나게 한다. 
                                         $count=1;
                                         $page_count++;
+                                    }
                                 }
                                 if(($page_count%3) == 0) {
                                     echo '</tr>';
