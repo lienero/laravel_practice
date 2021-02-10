@@ -10,7 +10,25 @@ Shift Calendar
 <link rel="stylesheet" href="/css/appoint.css">
 @endsection
 @section('content')
-<div class="container">
+<nav class="border-b border-gray-400">
+    <div class="container flex flex-col md:flex-row items-center justify-between py-6">
+        <ul class="flex flex-col md:flex-row items-cneter">
+            <li class="md:ml-16 mt-3 md:mt-0">
+                <a href="/" class="hover:text-gray-300 text-white font-bold text-4xl">KD-harisop</a>
+            </li>
+        </ul>
+        <ul class="flex flex-col md:flex-row items-cneter">
+            <li class="md:ml-16 mt-3 md:mt-0">
+                <a href="/login" class="hover:text-gray-300 text-white font-bold text-2xl">ログイン</a>
+            </li>
+            <li class="md:ml-6 mt-3 md:mt-0">
+                <a href="/Member_registration" class="hover:text-gray-300 font-bold text-white text-2xl">会員登録</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<div class="container bg-white pt-6">
     <table class="table table-bordered table-responsive">
         <tr align="center">
             <td>

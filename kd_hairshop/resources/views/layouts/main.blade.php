@@ -23,7 +23,6 @@
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-
 <body class="font-sans bg-gray-700 text-white">
     @include('sweetalert::alert')
     <nav class="border-b border-gray-400">
