@@ -17,7 +17,6 @@
     @include('sweetalert::alert')
     @yield('content')
     <!-- body 컨텐츠가 들어갈 부분 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     @yield('script')
     <!-- script가 들어갈 부분 -->
 </body>

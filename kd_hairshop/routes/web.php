@@ -20,10 +20,6 @@ Route::get('/price', function () {
     return view('price');
 });
 
-Route::get('/manager', function () {
-    return view('manager.index');
-});
-
 Route::get('/manager/shift_management', function () {
     return view('manager.shift_management');
 });
@@ -46,6 +42,10 @@ Route::get('/appoint/designer',  [AppointController::class,'designer']);
 Route::post('/appoint',  [AppointController::class,'store']);
 
 // 관리자 예약관리기능
+Route::get('/manager', [AppointController::class,'management']); 
+
+Route::post('/manager', [AppointController::class,'management_delete']); 
+
 Route::get('/manager/appo_calender', [AppointController::class,'appo_calender']); 
 
 Route::get('/manager/appo_management', [AppointController::class,'appo_management']); 
@@ -60,6 +60,11 @@ Route::post('/mypage',  [AppointController::class,'mypage_delete']);
 
 // 시프트 관리 기능 컨트롤러
 use App\Http\Controllers\ShiftController;
+
+// 시프트 관리 기능
+Route::get('/manager/shift_management', [ShiftController::class,'shift_management']);
+
+Route::post('/manager/shift_management', [ShiftController::class,'shift_store']);
 
 Route::get('/manager/shift_calender', [ShiftController::class,'shift_calender']); 
 

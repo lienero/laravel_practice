@@ -282,6 +282,45 @@ class AppointController extends Controller
                 ]);
         }
 
+        public function management(Request $request) //매니저 페이지 메소드
+        {
+            date_default_timezone_set('Asia/Seoul');
+            // $date 값이 없으면 현재 날짜
+            $date = date("Y-m-d");
+    
+            $appoints = Appoint::where('appoint_st','like', $date.'%')->orderBy('appoint_st','asc')->get();
+
+            return view('manager.index', [
+                'appoints'=>$appoints,
+                'date'=>$date
+            ]);
+        }
+
+        public function management_delete(Request $request) //매니저 페이지 메소드
+        {
+            // $date 값이 없으면 현재 날짜
+            $date = $request->input('date');
+    
+            $appoints = Appoint::where('appoint_st','like', $date.'%')->orderBy('appoint_st','asc')->get();
+            
+            if($request->input('all') != NULL){
+                // 삭제요청
+                Appoint::where('appoint_st','like', $date.'%')->delete();
+            } else if($request->input('checked') != NULL) {
+                $checked = $request->input('checked');
+                foreach($checked as $check){
+                    Appoint::where('No', $check)->delete();
+                }
+            } else {
+                Appoint::where('No', $request->input('delNo'))->delete();
+            }
+    
+            // 삭제요청
+            Alert::error('예약취소', '예약이 취소 되었습니다.');
+    
+            return redirect('/manager');
+        }
+
         public function appo_management(Request $request) //디자니어페이지 메소드
         {
             // $date 값이 없으면 현재 날짜

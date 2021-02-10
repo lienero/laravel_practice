@@ -9,6 +9,61 @@ use App\Shift; // 테이블명 지정
 
 class ShiftController extends Controller
 {
+    public function shift_management(Request $request) //시프트 관리 메소드
+    {
+        // $date 값이 없으면 현재 날짜
+        $date = $_GET['date'];
+
+        $designers = Shift::where('date', $date)->get();
+
+        return view('manager.shift_management', [
+            'designers'=>$designers,
+            'date'=>$date
+        ]);
+    }
+
+    public function shift_store(Request $request) //시프트 저장 메소드
+    {
+        $date = $request->input('date'); // 날짜
+        $designer = $request->input('designer'); // 디자이너
+
+        if($request->input('checked') != NULL) {
+            $checked = $request->input('checked');
+            for($i=0; $i<6; $i++){
+                $staffs[$i] = 'off';
+                $staff = 'staff_'.($i+1);
+                foreach($checked as $check){
+                    if($staff==$check){
+                        $staffs[$i] = 'on';
+                    }
+                }
+            }
+        } else {
+            for($i =1; $i<7; $i++){
+                $staffs[$i] = 'off';
+            }
+        }   
+
+        Shift::get();
+        // date가 이미 있을 경우에는 update
+        $Shift = new Shift;
+        $Shift->date = $date;
+        $i=1;
+        foreach($staffs as $staff){
+            if($staff == 'on'){
+                $staff_ = 'staff_'.$i; 
+                $Shift->$staff_  = $staff;
+            }
+            $i++;
+        }
+        $Shift->save();
+
+        Alert::success('시프트 관리 완료', '시프트 관리를 마쳤습니다.');
+
+        return redirect("/manager/shift_calender");
+        // $date 값이 없으면 현재 날짜
+    }
+
     // use Illuminate\Http\Request 클래스의 변수
     public function shift_calender(Request $request) // Request 클래스의 변수 매개변수로 사용
     {

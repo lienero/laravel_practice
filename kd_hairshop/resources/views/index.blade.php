@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @extends('layouts.sliderbox')
+@extends('layouts.nav_bar')
 @extends('layouts.footer')
 @section('content')
 

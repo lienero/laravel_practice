@@ -39,7 +39,8 @@
                                     <div class="text-sm leading-5 text-gray-800">
                                         <label class="flex items-center">
                                             <input type="checkbox" class="form-checkbox ab" name="checked[]" value="{{$appoint->No}}">
-                                        </label></div>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </td>

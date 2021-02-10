@@ -45,6 +45,8 @@
         </div>
     </nav>
     @yield('sliderbox')
+    @yield('nav_bar')
+    @yield('nav_bar_manager')
     @yield('content')
     @yield('footer')
 </body>
