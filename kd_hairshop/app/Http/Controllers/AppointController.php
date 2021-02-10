@@ -107,6 +107,7 @@ class AppointController extends Controller
 
         $appoint_time = array("10:00", "10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30"
         ,"17:00","17:30","18:00","18:30","19:00","19:30");
+        $designer_name = array('staff_1'=>'天海 春香', 'staff_2'=>'如月 千早', 'staff_3'=>'星井 美希', 'staff_4'=>'萩原 雪歩' ,'staff_5'=>'四条 貴音', 'staff_6'=>'水瀬 伊織');
 
         $designers = Shift::where('date', $date)->get();
         // 선택한 예약 시간과 일치하는 데이터베이스의 필드 
@@ -123,6 +124,7 @@ class AppointController extends Controller
             'designers'=>$designers,
             'appoints'=>$appoints,
             'ds_appoints'=>$ds_appoints,
+            'designer_name'=>$designer_name,
             'date'=>$date,
             'datetime'=>$datetime,
             'designer'=>$designer,
@@ -154,7 +156,9 @@ class AppointController extends Controller
         $appoint_time = array("10:00", "10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30"
         ,"17:00","17:30","18:00","18:30","19:00","19:30");
 
-        $designer_info = array('staff_1'=>'불속성', 'staff_2'=>'풀속성', 'staff_3'=>'물속성', 'staff_4'=>'빛속성' ,'staff_5'=>'전기속성', 'staff_6'=>'바위속성');
+        $designer_name = array('staff_1'=>'天海 春香', 'staff_2'=>'如月 千早', 'staff_3'=>'星井 美希', 'staff_4'=>'萩原 雪歩' ,'staff_5'=>'四条 貴音', 'staff_6'=>'水瀬 伊織');
+        $designer_info = array('staff_1'=>'脱毛専門のデザイナー', 'staff_2'=>'女性カット専門のデザイナー', 'staff_3'=>'男性カット専門のデザイナー', 'staff_4'=>'カラー専門のデザイナー' ,'staff_5'=>'パーマ専門
+        のデザイナー', 'staff_6'=>'一番綺麗なデザイナー');
 
         $designers = Shift::where('date', $date)->get();
         $appoints = Appoint::where('appoint_st','like', $date.'%')->orderBy('appoint_st','asc')->get();
@@ -163,6 +167,7 @@ class AppointController extends Controller
             'designers'=>$designers,
             'appoints'=>$appoints,
             'designer_info'=>$designer_info,
+            'designer_name'=>$designer_name,
             'year'=>$year,
             'month'=>$month,
             'day'=>$day,
@@ -200,7 +205,7 @@ class AppointController extends Controller
         $Appoint->appoint_end = $appoint_end;
         $Appoint->save();
 
-        Alert::success('예약완료', '예약이 완료 되었습니다.');
+        Alert::success('予約完了', '予約完了されました。');
 
         return redirect("/");
     }
@@ -316,7 +321,7 @@ class AppointController extends Controller
             }
     
             // 삭제요청
-            Alert::error('예약취소', '예약이 취소 되었습니다.');
+            Alert::error('予約取り消し', '予約が取り消されました。');
     
             return redirect('/manager');
         }
@@ -357,7 +362,7 @@ class AppointController extends Controller
             }
     
             // 삭제요청
-            Alert::error('예약취소', '예약이 취소 되었습니다.');
+            Alert::error('予約取り消し', '予約が取り消されました。');
     
             return redirect('/manager/appo_management?date='.$date.'');
         }
@@ -395,7 +400,7 @@ class AppointController extends Controller
             }
     
             // 삭제요청
-            Alert::error('예약취소', '예약이 취소 되었습니다.');
+            Alert::error('予約取り消し', '予約が取り消されました。');
     
             return redirect('/mypage');
         }

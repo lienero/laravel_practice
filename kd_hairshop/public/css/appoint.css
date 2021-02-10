@@ -1,19 +1,22 @@
 font.red {
-    font-family: tahoma;
+    font-family: "M PLUS Rounded 1c";
     font-size: 20px;
     color: red;
+    font-weight: bold;
 }
 
 font.blue {
-    font-family: tahoma;
+    font-family: "M PLUS Rounded 1c";
     font-size: 20px;
     color: #0000ff;
+    font-weight: bold;
 }
 
 font.black {
-    font-family: tahoma;
+    font-family: "M PLUS Rounded 1c";
     font-size: 20px;
-    color: #000000;
+    color: #000;
+    font-weight: bold;
 }
 
 .staff_1 {

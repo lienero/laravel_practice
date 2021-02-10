@@ -14,11 +14,11 @@
             <!-- card -->
             <div class="flex">
                 <img
-                    class="h-12 w-12 rounded-full object-cover"
-                    src="/img/cut2.jpg"/>
+                    class="h-13 w-12 rounded-full object-cover"
+                    src="/img/{{$staff}}_mini.png"/>
 
                 <div class="flex flex-col ml-6">
-                    <span class="text-lg font-bold text-black">{{$staff}}</span>
+                    <span class="text-lg font-bold text-black">{{$designer_name[$staff]}}</span>
                     <div class="mt-4 flex">
                         <div class="flex">
                             <svg
@@ -53,7 +53,7 @@
                             <span
                                 class="ml-2 text-sm text-gray-600
                                 dark:text-gray-300 capitalize">
-                                毎週月・水・金出勤
+                                {{$designer_info[$staff]}}
                             </span>
                         </div>
 

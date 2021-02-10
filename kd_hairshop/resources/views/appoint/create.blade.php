@@ -53,7 +53,7 @@
                                             }
                                         }
                                         if($count == 0){
-                                            echo '<option value="'.$staff.'">'.$staff.'</option>';
+                                            echo '<option value="'.$staff.'">'.$designer_name[$staff].'</option>';
                                         }
                                     }
                                 }     
@@ -71,7 +71,7 @@
                     <label>
                         職員選び
                         <select mbsc-dropdown id="demo-desktop" data-input-style="box" name="designer">
-                            <option value="{{$designer}}">{{$designer}}</option>
+                            <option value="{{$designer}}">{{$designer_name[$designer]}}</option>
                         </select>
                     </label>
                     <label>

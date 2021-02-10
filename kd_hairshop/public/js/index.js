@@ -95,9 +95,8 @@ function sliderButton1(){
       toggleModal()
       })
     }
-    
+
     const overlay = document.querySelector('.modal-overlay')
-    overlay.addEventListener('click', toggleModal)
     
     var closemodal = document.querySelectorAll('.modal-close')
     for (var i = 0; i < closemodal.length; i++) {
@@ -128,11 +127,12 @@ function sliderButton1(){
 });
 
 //check-all//
-
 $( document ).ready( function() {
-    $( '.check-all' ).click( function() {
-      $( '.ab' ).prop( 'checked', this.checked );
-    } );
+  $( '.check-all' ).click( function() {
+    $( '.ab' ).prop( 'checked', this.checked );
   } );
+} );
+
+
 
   

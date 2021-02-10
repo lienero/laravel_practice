@@ -40,10 +40,10 @@
                             <a href="/appoint/create?date='.$date.'&designer='.$staff.'">
                             <div class="py-16 max-w-sm rounded overflow-hidden shadow-lg transition duration-500 bg-white hover:bg-gray-400">
                                 <div class="space-y-10">
-                                    <img src="/img/cut1.jpg" alt="">
+                                    <img src="/img/'.$staff.'.png" alt="">
                                     <div class="px-6 py-4">
                                         <div class="space-y-5">
-                                            <div class="font-bold text-xl mb-2 text-gray-800">'.$staff.'</div>
+                                            <div class="font-bold text-xl mb-2 text-gray-800">'.$designer_name[$staff].'</div>
                                             <p class="text-gray-700 text-base">
                                                 '.$designer_info[$staff].'
                                             </p>
@@ -59,10 +59,10 @@
                         <a href="/appoint/create?date='.$date.'&designer='.$staff.'">
                         <div class="py-16 max-w-sm rounded overflow-hidden shadow-lg transition duration-500 bg-white hover:bg-gray-400">
                             <div class="space-y-10">
-                                <img src="/img/cut1.jpg" alt="">
+                                <img src="/img/'.$staff.'.png" alt="">
                                 <div class="px-6 py-4">
                                     <div class="space-y-5">
-                                        <div class="font-bold text-xl mb-2 text-gray-800">'.$staff.'</div>
+                                        <div class="font-bold text-xl mb-2 text-gray-800">'.$designer_name[$staff].'</div>
                                         <p class="text-gray-700 text-base">
                                             '.$designer_info[$staff].'
                                         </p>

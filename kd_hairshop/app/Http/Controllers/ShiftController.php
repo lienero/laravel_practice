@@ -9,20 +9,27 @@ use App\Shift; // 테이블명 지정
 
 class ShiftController extends Controller
 {
-    public function shift_management(Request $request) //시프트 관리 메소드
+    //시프트 관리 메소드
+    public function shift_management(Request $request) 
     {
         // $date 값이 없으면 현재 날짜
         $date = $_GET['date'];
 
         $designers = Shift::where('date', $date)->get();
+        $designer_name = array('staff_1'=>'天海 春香', 'staff_2'=>'如月 千早', 'staff_3'=>'星井 美希', 'staff_4'=>'萩原 雪歩' ,'staff_5'=>'四条 貴音', 'staff_6'=>'水瀬 伊織');
+        $designer_info = array('staff_1'=>'脱毛専門のデザイナー', 'staff_2'=>'女性カット専門のデザイナー', 'staff_3'=>'男性カット専門のデザイナー', 'staff_4'=>'カラー専門のデザイナー' ,'staff_5'=>'パーマ専門
+        のデザイナー', 'staff_6'=>'一番綺麗なデザイナー');
 
         return view('manager.shift_management', [
             'designers'=>$designers,
+            'designer_info'=>$designer_info,
+            'designer_name'=>$designer_name,
             'date'=>$date
         ]);
     }
 
-    public function shift_store(Request $request) //시프트 저장 메소드
+    //시프트 저장 메소드
+    public function shift_store(Request $request) 
     {
         $date = $request->input('date'); // 날짜
         $designer = $request->input('designer'); // 디자이너
@@ -44,21 +51,44 @@ class ShiftController extends Controller
             }
         }   
 
-        Shift::get();
-        // date가 이미 있을 경우에는 update
-        $Shift = new Shift;
-        $Shift->date = $date;
-        $i=1;
-        foreach($staffs as $staff){
-            if($staff == 'on'){
-                $staff_ = 'staff_'.$i; 
-                $Shift->$staff_  = $staff;
-            }
-            $i++;
-        }
-        $Shift->save();
+        // update 구문인지 아닌지를 구분하기 위한 쿼리설정
+        $designers = Shift::where('date', $date)->get();
 
-        Alert::success('시프트 관리 완료', '시프트 관리를 마쳤습니다.');
+        $count = 0;
+        // 일치하는 date가 있을 시에 update 구문으로 작동
+        foreach($designers as $designer){
+            $i=1;
+            foreach($staffs as $staff){
+                if($staff == 'on'){
+                    $staff_ = 'staff_'.$i; 
+                    Shift::where('date', $date)->update([ $staff_ => $staff]);
+                } else {
+                    $staff_ = 'staff_'.$i; 
+                    Shift::where('date', $date)->update([ $staff_ => NULL]);
+                }
+                $i++;
+            }
+            $count = 1;
+        } 
+        // 일치하는 date가 없을 시에 구문을 새로 생성 작동
+        if($count == 0){
+            Shift::get();
+            // date가 이미 있을 경우에는 update
+            $Shift = new Shift;
+            $Shift->date = $date;
+            $i=1;
+            foreach($staffs as $staff){
+                if($staff == 'on'){
+                    $staff_ = 'staff_'.$i; 
+                    $Shift->$staff_  = $staff;
+                }
+                $i++;
+            }
+            $Shift->save();
+        }
+
+
+        Alert::success('シフト管理完了', 'シフト管理を済ませました。');
 
         return redirect("/manager/shift_calender");
         // $date 값이 없으면 현재 날짜
