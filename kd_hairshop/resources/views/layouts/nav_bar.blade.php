@@ -29,7 +29,7 @@
                   </svg>
                 </div>
               </div>
-              <p class="text-black">カット :5,000 円（30分)</p>
+              <p class="text-black">カット :&nbsp;5,000 円（30分)</p>
               <p class="text-black">パーマ：6,000 円（1時間)</p>
               <p class="text-black">カラー：4,000 円 (1時間)</p>
            

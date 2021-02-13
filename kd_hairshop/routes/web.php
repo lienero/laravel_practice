@@ -8,12 +8,12 @@ Route::get('/introduction', function () {
     return view('introduction');
 });
 
-Route::get('/login', function () {
-    return view('login');
+Route::get('/login/login', function () {
+    return view('login.login');
 });
 
-Route::get('/Member_registration', function () {
-    return view('Member_registration');
+Route::get('/login/register', function () {
+    return view('login.register');
 });
 
 Route::get('/price', function () {
@@ -67,13 +67,4 @@ Route::get('/manager/shift_management', [ShiftController::class,'shift_managemen
 Route::post('/manager/shift_management', [ShiftController::class,'shift_store']);
 
 Route::get('/manager/shift_calender', [ShiftController::class,'shift_calender']); 
-
-// 로그인 기능 컨트롤러
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
