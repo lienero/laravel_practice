@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+@if(session('rank'))
 <form action="/manager/shift_management" method="POST">
     {{-- @csrf : CSRF(크로스-사이트 요청 위조 공격)으로부터 보호 --}}
     @csrf
@@ -107,4 +108,7 @@
         <button type="submit" class="mx-auto px-5 py-2 border-blue-500 border bg-white text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none font-semibold">確認</button>
     </div>
 </form>
+@else
+관리자 권한 없음
+@endif
 @endsection

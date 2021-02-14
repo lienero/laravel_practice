@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @extends('layouts.footer')
 @section('content')
-<form action="/manager/appo_management" method="POST">
+<form action="/mypage" method="POST">
     {{-- @csrf : CSRF(크로스-사이트 요청 위조 공격)으로부터 보호 --}}
     @csrf
     <div class="container mx-auto mt-5">
@@ -24,15 +24,15 @@
                 <tbody class="bg-white">
                     <tr>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                            <div class="text-sm leading-5 text-blue-900">이경민</div>
+                            <div class="text-sm leading-5 text-blue-900">{{session('member_id')}}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
-                            매니저@gmial.com
+                            {{session('email')}}
                         </td>
-                        <input type="hidden" name="mode" value="1">
                         <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
-                            <button type="submit" class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">会員退会</button>
+                            <button type="button" onclick="location.href='/mypage/delete_member'" class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">会員退会</button>
                         </td>
+                        </form>
                     </tr>
                 </tbody>
             </table>
@@ -92,7 +92,7 @@
                             {{$dt_appoint->hair_style}}
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                            {{$dt_appoint->designer}}
+                            {{$designer_name[$dt_appoint->designer]}}
                         </td>
                         <input type="hidden" name="delNo" value="{{$dt_appoint->No}}">
                         <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
@@ -100,6 +100,30 @@
                         </td>
                     </tr>
                     @endforeach
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900  text-sm leading-5 text-left">
+                            <a href="/mypage?dt_page={{ $dt_startPage }}">◀◀</a>
+                          <span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 text-sm leading-5">
+                            <?php 
+                            if($dt_pageNum == 1) {
+                              echo "◀</span>";
+                            } else { 
+                              echo '<a href="/mypage?dt_page='.($dt_pageNum-1).'">◀</a></span>';
+                            } 
+                            if($dt_pageNum == $dt_totalPage) { 
+                              echo '<span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 text-sm leading-5">▶</span>';
+                            } else { 
+                              echo '<span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900  text-sm leading-5"><a href ="/mypage?dt_page='.($dt_pageNum+1).'">▶</a></span>';
+                            } ?>   
+                            <a href = "/mypage?dt_page={{ $dt_endPage }}">▶▶</a>
+                        </td>
+                      </tr>
                 </tbody>
             </table>
             </div>
@@ -139,10 +163,32 @@
                             {{$appoint->hair_style}}
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                            {{$appoint->designer}}
+                            {{$designer_name[$appoint->designer]}}
                         </td>
                     </tr>
                     @endforeach
+                    <tr class="text-center">
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900  text-sm leading-5 text-left">
+                            <a href="/mypage?page={{ $startPage }}">◀◀</a>
+                          <span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 text-sm leading-5">
+                            <?php 
+                            if($pageNum == 1) {
+                              echo "◀</span>";
+                            } else { 
+                              echo '<a href="/mypage?page='.($pageNum-1).'">◀</a></span>';
+                            } 
+                            if($pageNum == $totalPage) { 
+                              echo '<span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 text-sm leading-5">▶</span>';
+                            } else { 
+                              echo '<span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900  text-sm leading-5"><a href ="/mypage?page='.($pageNum+1).'">▶</a></span>';
+                            } ?>
+                            <a href = "/mypage?page={{ $endPage }}">▶▶</a>
+                        </td>
+                      </tr>
                 </tbody>
             </table>
         </div>

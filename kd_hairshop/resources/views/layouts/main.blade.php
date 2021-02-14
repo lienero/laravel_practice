@@ -18,10 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
     <link rel="stylesheet" href="/css/mobiscroll.javascript.min.css">
     <script src="/js/mobiscroll.javascript.min.js"></script>
-    <script>
-        window.isMbscDemo = true;
-    </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src ="/js/checks.js"></script>
 </head>
 <body class="font-sans bg-gray-700 text-white">
     @include('sweetalert::alert')
@@ -34,12 +32,27 @@
                 </li>
             </ul>
             <ul class="flex flex-col md:flex-row items-cneter">
+                @if(session('member_id'))
                 <li class="md:ml-16 mt-3 md:mt-0">
-                    <a href="/login" class="hover:text-gray-300 font-bold">ログイン</a>
+                    <a href="/login/logout" class="hover:text-gray-300 font-bold">ログアウト</a>
+                </li>
+                @if(session('rank'))
+                <li class="md:ml-6 mt-3 md:mt-0">
+                    <a href="/manager" class="hover:text-gray-300 font-bold">マネージャーページ</a>
+                </li>
+                @else
+                <li class="md:ml-6 mt-3 md:mt-0">
+                    <a href="/mypage" class="hover:text-gray-300 font-bold">マイページ</a>
+                </li>
+                @endif
+                @else
+                <li class="md:ml-16 mt-3 md:mt-0">
+                    <a href="/login/login" class="hover:text-gray-300 font-bold">ログイン</a>
                 </li>
                 <li class="md:ml-6 mt-3 md:mt-0">
-                    <a href="/Member_registration" class="hover:text-gray-300 font-bold">会員登録</a>
+                    <a href="/login/register" class="hover:text-gray-300 font-bold">会員登録</a>
                 </li>
+                @endif
             </ul>
         </div>
     </nav>

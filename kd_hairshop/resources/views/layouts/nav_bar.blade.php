@@ -1,10 +1,15 @@
 @section('nav_bar')
 <div class="container mx-auto">
+    @if(session('member_id'))
     <div class="grid grid-cols-3">
-     <a href="/appoint" class=""><div class="bg-gray-800 text-center text-2xl hover:bg-gray-200 hover:text-black font-bold">予約</div></a>
+      <a href="/appoint" class=""><div class="bg-gray-800 text-center text-2xl hover:bg-gray-200 hover:text-black font-bold">予約</div></a>
       <a href="/mypage"><div class="bg-gray-700 text-center text-2xl font-bold hover:bg-gray-200 hover:text-black ">予約管理</div></a>
-     <div class="bg-gray-800 text-center text-2xl font-bold "><button class="modal-open bg-transparent text-white hover:text-black hover:bg-gray-200 font-bold w-full h-full">値段</button>
-    
+      <div class="bg-gray-800 text-center text-2xl font-bold "><button class="modal-open bg-transparent text-white hover:text-black hover:bg-gray-200 font-bold w-full h-full">値段</button>
+    @else
+    <div class="grid grid-cols-2">
+      <a href="/appoint" class=""><div class="bg-gray-800 text-center text-2xl hover:bg-gray-200 hover:text-black font-bold">予約</div></a>
+      <div class="bg-gray-700 text-center text-2xl font-bold "><button class="modal-open bg-transparent text-white hover:text-black hover:bg-gray-200 font-bold w-full h-full">値段</button>
+    @endif
         <!--Modal-->
         <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
           <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>

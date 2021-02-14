@@ -2,6 +2,7 @@
 @extends('layouts.sliderbox')
 @extends('layouts.nav_bar_manager')
 @section('content')
+@if(session('rank'))
 <form action="/manager" method="POST">
   {{-- @csrf : CSRF(크로스-사이트 요청 위조 공격)으로부터 보호 --}}
   @csrf
@@ -60,7 +61,7 @@
                     {{$appoint->hair_style}}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                    {{$appoint->designer}}
+                    {{$designer_name[$appoint->designer]}}
                 </td>
                 <input type="hidden" name="date" value="{{$date}}">
                 <input type="hidden" name="delNo" value="{{$appoint->No}}">
@@ -69,6 +70,30 @@
                 </td>
             </tr>
             @endforeach
+            <tr>
+              <td>
+              </td>
+              <td>
+              </td>
+              <td>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900  text-sm leading-5 text-right">
+                  <a href="/manager?page={{ $startPage }}">◀◀</a>
+                <span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 text-sm leading-5">
+                  <?php 
+                  if($pageNum == 1) {
+                    echo "◀</span>";
+                  } else { 
+                    echo '<a href="/manager?page='.($pageNum-1).'">◀</a></span>';
+                  } 
+                  if($pageNum == $totalPage) { 
+                    echo '<span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 text-sm leading-5">▶</span>';
+                  } else { 
+                    echo '<span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900  text-sm leading-5"><a href ="/manager?page='.($pageNum+1).'">▶</a></span>';
+                  } ?>
+                  <a href = "/manager?page={{ $endPage }}">▶▶</a>
+              </td>
+            </tr>
         </tbody>
       </table>  
   </div>
@@ -76,52 +101,51 @@
 </form>  
 <div class="container mx-auto kd_bg">
   <br>
-  <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl ">
-    <div class="md:flex fles-row">
-      <div class="md:flex-shrink-0">
-        <img class="h-48 w-full object-cover md:w-48" src="/img/magazine1.png">
-      </div>
-      <div class="p-8">
-        <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Case study</div>
-        <a href="naver.com" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Finding
-          customers for your new business</a>
-        <p class="mt-2 text-gray-500">Getting a new business off the ground is a lot of hard work. Here are five ideas
-          you can use to find your first customers.</p>
-      </div>
-    </div>
-  </div>
-
-  <br>
-  <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-    <div class="md:flex">
-      <div class="md:flex-shrink-0">
-        <img class="h-48 w-full object-cover md:w-48" src="/img/magazine2.png">
-      </div>
-      <div class="p-8">
-        <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Case study</div>
-        <a href="naver.com" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Finding
-          customers for your new business</a>
-        <p class="mt-2 text-gray-500">Getting a new business off the ground is a lot of hard work. Here are five ideas
-          you can use to find your first customers.</p>
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl ">
+      <div class="md:flex fles-row">
+        <div class="md:flex-shrink-0">
+          <img class="h-48 w-full object-cover md:w-48" src="/img/magazine1.png">
+        </div>
+        <div class="p-8">
+          <div class="uppercase tracking-wide text-base text-indigo-500 font-bold">MEN's FASHION</div>
+          <a href="naver.com" class="block mt-1 text-sm leading-tight text-black hover:underline font-semibold">2021年３月号</a>
+          <p class="mt-2 text-gray-500 font-semibold overflow-hidden">おしゃれ男子に向けた最新ファッションを中心に、流行を取り入れた最旬スタイルから人気ブランド＆新作アイテム、ハイセンスなコーディネートなど紹介しています。
+        </div>
       </div>
     </div>
-  </div>
-
-  <br>
-  <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-    <div class="md:flex">
-      <div class="md:flex-shrink-0">
-        <img class="h-48 w-full object-cover md:w-48" src="/img/magazine3.png">
-      </div>
-      <div class="p-8">
-        <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Case study</div>
-        <a href="naver.com" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Finding
-          customers for your new business</a>
-        <p class="mt-2 text-gray-500">Getting a new business off the ground is a lot of hard work. Here are five ideas
-          you can use to find your first customers.</p>
+  
+    <br>
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+      <div class="md:flex">
+        <div class="md:flex-shrink-0">
+          <img class="h-48 w-full object-cover md:w-48" src="/img/magazine2.png">
+        </div>
+        <div class="p-8">
+          <div class="uppercase tracking-wide text-base text-indigo-500 font-bold">FASHION AGE</div>
+          <a href="naver.com" class="block mt-1 text-sm leading-tight text-black hover:underline font-semibold">2021年３月号</a>
+          <p class="mt-2 text-gray-500 font-semibold overflow-hidden">「アラサーからはきれいな女らしさに乗り換える！」<br>
+            シンプルだけれど女らしい、ベーシックだけれど更新感がある、そんなスタイルがある</p>
+        </div>
       </div>
     </div>
+  
+    <br>
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+      <div class="md:flex">
+        <div class="md:flex-shrink-0">
+          <img class="h-48 w-full object-cover md:w-48" src="/img/magazine3.png">
+        </div>
+        <div class="p-8">
+          <div class="uppercase tracking-wide text-base text-indigo-500 font-bold">FASHION BEAUTY</div>
+          <a href="naver.com" class="block mt-1 text-sm leading-tight text-black hover:underline font-semibold">2021年３月号</a>
+          <p class="mt-2 text-gray-500 font-semibold overflow-hidden">「アラサーからはきれいな女らしさに乗り換える！」<br>
+            シンプルだけれど女らしい、<br>ベーシックだけれど更新感がある</p>
+        </div>
+      </div>
+    </div>
+    <br>
   </div>
-  <br>
-</div>
+@else
+관리자 권한 없음
+@endif
 @endsection

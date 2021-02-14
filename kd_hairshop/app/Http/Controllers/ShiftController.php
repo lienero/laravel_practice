@@ -94,8 +94,8 @@ class ShiftController extends Controller
         // $date 값이 없으면 현재 날짜
     }
 
-    // use Illuminate\Http\Request 클래스의 변수
-    public function shift_calender(Request $request) // Request 클래스의 변수 매개변수로 사용
+    // 시프트 캘린더 메소드
+    public function shift_calender(Request $request) 
     {
         date_default_timezone_set('Asia/Seoul');
         

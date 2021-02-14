@@ -18,16 +18,31 @@ Shift Calendar
             </li>
         </ul>
         <ul class="flex flex-col md:flex-row items-cneter">
+            @if(session('member_id'))
             <li class="md:ml-16 mt-3 md:mt-0">
-                <a href="/login" class="hover:text-gray-300 text-white font-bold text-2xl">ログイン</a>
+                <a href="/login/logout" class="text-white hover:text-gray-300 font-bold">ログアウト</a>
+            </li>
+            @if(session('rank'))
+            <li class="md:ml-6 mt-3 md:mt-0">
+                <a href="/manager" class="text-white hover:text-gray-300 font-bold">マネージャーページ</a>
+            </li>
+            @else
+            <li class="md:ml-6 mt-3 md:mt-0">
+                <a href="/mypage" class="text-white hover:text-gray-300 font-bold">マイページ</a>
+            </li>
+            @endif
+            @else
+            <li class="md:ml-16 mt-3 md:mt-0">
+                <a href="/login/login" class="text-white hover:text-gray-300 font-bold">ログイン</a>
             </li>
             <li class="md:ml-6 mt-3 md:mt-0">
-                <a href="/Member_registration" class="hover:text-gray-300 font-bold text-white text-2xl">会員登録</a>
+                <a href="/login/register" class="text-white hover:text-gray-300 font-bold">会員登録</a>
             </li>
+            @endif
         </ul>
-    </div>
 </nav>
 <br>
+@if(session('rank'))
 <div class="container bg-white pt-6">
     <table class="table table-bordered table-responsive">
         <tr align="center">
@@ -177,4 +192,7 @@ Shift Calendar
         <?php } ?>
     </table>
 </div>
+@else
+관리자 권한 없음
+@endif
 @endsection

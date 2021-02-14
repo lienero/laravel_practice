@@ -11,15 +11,10 @@
         
       <div>
         <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
-          KD-hairshopにようこそ
+            パスワードリセット
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          <a href="/login/register" class="font-medium text-blue-600 hover:text-blue-500">
-            会員登録
-          </a>
-        </p>
       </div>
-      <form class="mt-8 space-y-6" action="/login/login" method="POST">
+      <form class="mt-8 space-y-6" action="/login/password_set" method="POST">
         @csrf
       <input type="hidden" name="remember" value="true">
         <div class="rounded-md shadow-sm -space-y-px">
@@ -27,25 +22,18 @@
             <label for="email-address" class="sr-only">ID</label>
             <input id="email-address" name="id" type="text" autocomplete="id" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="ID" required>
           </div>
+          <br>
           <div>
-            <label for="password" class="sr-only">Password</label>
-            <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Password" required>
+            <label for="password" class="sr-only">Email address</label>
+            <input id="password" name="email" type="text" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Email address" required>
           </div>
-        </div>
-  
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded">
-            <label for="remember_me" class="ml-2 block text-sm text-gray-900">
-              Remember me
-            </label>
+          <br>
+          <div>
+            <label for="password" class="sr-only">パスワード</label>
+            <input type="password" name="password" id="pw"  type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="新しいパスワード" onKeyup="safetyPasswordPattern(this); isSame();" required>
           </div>
-  
-          <div class="text-sm">
-            <a href="/login/password_set" class="font-semibold text-blue-600 hover:text-blue-500">
-              パスワードを忘れた場合
-            </a>
-          </div>
+          <div class="sm:text-sm text-gray-900" id="makyText">:: パスワードをご入力ください ::</div>
+          <br>
         </div>
   
         <div>
@@ -56,7 +44,7 @@
                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
               </svg>
             </span>
-            ログイン
+            パスワードリセット
           </button>
         </div>
       </form>

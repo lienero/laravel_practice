@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+@if(session('rank'))
 <form action="/manager/appo_management" method="POST">
     {{-- @csrf : CSRF(크로스-사이트 요청 위조 공격)으로부터 보호 --}}
     @csrf
@@ -57,7 +58,7 @@
                             {{$appoint->hair_style}}
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                            {{$appoint->designer}}
+                            {{$designer_name[$appoint->designer]}}
                         </td>
                         <input type="hidden" name="date" value="{{$date}}">
                         <input type="hidden" name="delNo" value="{{$appoint->No}}">
@@ -66,9 +67,36 @@
                         </td>
                     </tr>
                     @endforeach
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900  text-sm leading-5 text-right">
+                            <a href="/manager/appo_management?date={{$date}}&page={{ $startPage }}">◀◀</a>
+                          <span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 text-sm leading-5">
+                            <?php 
+                            if($pageNum == 1) {
+                              echo "◀</span>";
+                            } else { 
+                              echo '<a href="/manager/appo_management?date='.$date.'&page='.($pageNum-1).'">◀</a></span>';
+                            } 
+                            if($pageNum == $totalPage) { 
+                              echo '<span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 text-sm leading-5">▶</span>';
+                            } else { 
+                              echo '<span class="px-6 py-4 whitespace-no-wrap border-b text-blue-900  text-sm leading-5"><a href ="/manager/appo_management?date='.$date.'&page='.($pageNum+1).'">▶</a></span>';
+                            } ?>
+                            <a href = "/manager/appo_management?date={{$date}}&page={{ $endPage }}">▶▶</a>
+                        </td>
+                      </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </form>
+@else
+관리자 권한 없음
+@endif
 @endsection
