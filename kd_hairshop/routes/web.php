@@ -85,3 +85,6 @@ Route::get('/manager/member_management', [MemberController::class,'member_manage
 
 Route::post('/manager/member_management', [MemberController::class,'members_delete']);
 
+use App\Http\Controllers\MailController;
+
+Route::get('mail', [MailController::class, 'send']);
