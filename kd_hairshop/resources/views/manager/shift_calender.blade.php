@@ -125,14 +125,15 @@ Shift Calendar
                     }
         
                     // 12. 오늘 날짜면 굵은 글씨
-                    if ($year == $thisyear && $month == $thismonth && $day == date("j") && $style != "red") {
+                    if ($style != "red") {
                         // 13. 날짜 출력
                         echo '<font class='.$style.'>';
                         if($ds_staff[0] != 'test') {
                             echo '<a style = "color:'.$style.'" href="/manager/shift_management?date='.$date.'">'.$day;
                             for($k=0; $k<6; $k++){
                                 if($ds_staff[$k] == 'on'){
-                                    echo '<div class="staff_'.($k+1).'" style="font-size: 9pt">staff_'.($k+1).'</div>';
+                                    $staff_name = "staff_".($k+1);
+                                    echo '<div class="'.$staff_name.'" style="font-size: 9pt">'.$designer_name[$staff_name].'</div>';
                                 }
                             }
                             echo '</a>';
@@ -142,43 +143,9 @@ Shift Calendar
                         echo '</font>';
                     } else {
                         echo '<font class='.$style.'>';
-                        if($year == $thisyear){
-                            if($month==$thismonth && $day >= $today && $style != "red" 
-                            || $month==$thismonth+1 && $day <= $today && $style != "red"){
-                                if($ds_staff[0] != 'test') {
-                                    echo '<a style = "color:'.$style.'" href="/manager/shift_management?date='.$date.'">'.$day;
-                                    for($k=0; $k<6; $k++){
-                                        if($ds_staff[$k] == 'on'){
-                                            echo '<div class="staff_'.($k+1).'" style="font-size: 9pt">staff_'.($k+1).'</div>';
-                                        }
-                                     }
-                                    echo '</a>';
-                                } else {
-                                    echo '<a style = "color:'.$style.'" href="/manager/shift_management?date='.$date.'">'.$day.'<div style="font-size: 9pt">職員なし</div></a>';
-                                }
-                            } else {
-                                echo $day;
-                                if($style == "red"){
-                                    echo '<div style="font-size: 9pt">休日</div>';
-                                }
-                            }
-                        } else if($year == ($thisyear+1) && $thismonth == 12 && $month == 1 && $day <= $today && $style != "red"){
-                            if($ds_staff[0] != 'test') {
-                                echo '<a style = "color:'.$style.'" href="/manager/shift_management?date='.$date.'">'.$day;
-                                for($k=0; $k<6; $k++){
-                                    if($ds_staff[$k] == 'on'){
-                                        echo '<div class="staff_'.($k+1).'" style="font-size: 9pt">staff_'.($k+1).'</div>';
-                                     }
-                                }
-                                echo '</a>';
-                            } else {
-                                echo '<a style = "color:'.$style.'" href="/manager/shift_management?year=date='.$date.'">'.$day.'<div style="font-size: 9pt">職員なし</div></a>';
-                            }
-                        } else {
-                            echo $day;
-                            if($style == "red"){
-                                    echo '<div style="font-size: 9pt">休日</div>';
-                                }
+                        echo $day;
+                        if($style == "red"){
+                             echo '<div style="font-size: 9pt">休日</div>';
                         }
                         echo '</font>';
                     }

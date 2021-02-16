@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 // use App\Task를 하면 모델인 Task 클래스를 상속받는다.
 use App\Appoint; // 테이블명 지정
 use App\Shift; // 테이블명 지정
 use App\Member; // 테이블명 지정
+
 
 class AppointController extends Controller
 {
@@ -217,7 +219,22 @@ class AppointController extends Controller
         $Appoint->appoint_st = $appoint_st;
         $Appoint->appoint_end = $appoint_end;
         $Appoint->save();
-
+        
+        // 메일송신
+        $user = array( 
+            'email' => $mem_email,
+            'name' => $mem_id 
+        ); 
+        $data = array( 
+            'detail'=> $appoint_st."に".$hair_style.'を予約してくださつてありがとうございます。', 
+            'name' => $user['name'] 
+        );
+         Mail::send('emails.welcome', $data, function($message) use ($user) 
+         { 
+             $message->from('kand_shop@gmail.com', 'Kanda Master'); 
+             $message->to($user['email'], $user['name'])->subject('kanda_hair_shopを予約してくださつてありがとうございます。'); 
+        }); 
+        
         Alert::success('予約完了', '予約完了されました。');
 
         return redirect("/");

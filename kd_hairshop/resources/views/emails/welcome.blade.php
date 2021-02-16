@@ -1,3 +1,3 @@
-Your sign up details are below: 
-{{ $detail }}, 
-{{ $name}}
+kanda_hair_shopです。
+{{ $detail }}
+{{ $name}}様。

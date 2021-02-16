@@ -126,7 +126,7 @@ Appoint Calendar
                     }
         
                     // 12. 오늘 날짜면 굵은 글씨
-                    if ($year == $thisyear && $month == $thismonth && $day == date("j") && $style != "red") {
+                    if ($style != "red") {
                         // 13. 날짜 출력
                         echo '<font class='.$style.'>';
                         if($ap_mem[0] != 'test') {
@@ -138,31 +138,9 @@ Appoint Calendar
                         echo '</font>';
                     } else {
                         echo '<font class='.$style.'>';
-                        if($year == $thisyear){
-                            if($month==$thismonth && $day >= $today && $style != "red" 
-                            || $month==$thismonth+1 && $day <= $today && $style != "red"){
-                                if($ap_mem[0] != 'test') {
-                                    echo '<a style = "color:'.$style.'" href="/manager/appo_management?date='.$date.'">'.$day.'<div style="font-size: 9pt">予約 '.$ap_mem[0].'外 '.($appoints_count-1).'名</div></a>';
-                                } else {
-                                    echo '<a style = "color:'.$style.'" href="/manager/appo_management?date='.$date.'">'.$day.'<div style="font-size: 9pt">予約なし</div></a>';
-                                }
-                            } else {
-                                echo $day;
-                                if($style == "red"){
-                                    echo '<div style="font-size: 9pt">休日</div>';
-                                }
-                            }
-                        } else if($year == ($thisyear+1) && $thismonth == 12 && $month == 1 && $day <= $today && $style != "red"){
-                            if($ap_mem[0] != 'test') {
-                                echo '<a style = "color:'.$style.'" href="/manager/appo_management?date='.$date.'">'.$day.'<div style="font-size: 9pt">予約 '.$ap_mem[0].'外 '.($appoints_count-1).'名</div></a>';
-                            } else {
-                                echo '<a style = "color:'.$style.'" href="/manager/appo_management?year=date='.$date.'">'.$day.'<div style="font-size: 9pt">予約なし</div></a>';
-                            }
-                        } else {
-                            echo $day;
-                            if($style == "red"){
-                                    echo '<div style="font-size: 9pt">休日</div>';
-                                }
+                        echo $day;
+                        if($style == "red"){
+                            echo '<div style="font-size: 9pt">休日</div>';
                         }
                         echo '</font>';
                     }

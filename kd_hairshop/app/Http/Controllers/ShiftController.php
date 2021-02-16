@@ -98,6 +98,8 @@ class ShiftController extends Controller
     public function shift_calender(Request $request) 
     {
         date_default_timezone_set('Asia/Seoul');
+
+        $designer_name = array('staff_1'=>'天海 春香', 'staff_2'=>'如月 千早', 'staff_3'=>'星井 美希', 'staff_4'=>'萩原 雪歩' ,'staff_5'=>'四条 貴音', 'staff_6'=>'水瀬 伊織');
         
         if (!isset($cellh)){
             $cellh = 70; // date cell height
@@ -152,6 +154,7 @@ class ShiftController extends Controller
             'cellh'=>$cellh,
             'tablew'=>$tablew,
             'cellw'=>$cellw,
+            'designer_name'=>$designer_name,
             'thisyear'=>$thisyear,
             'thismonth'=>$thismonth,
             'today'=>$today,
